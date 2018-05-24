@@ -21,11 +21,15 @@ public interface Person extends CommonParent {
 
     void setSurname(String surname);
 
+    String getSurname();
+
+    void setNickName(String nickName);
+
     String getNickName();
 
     void setTitle(Title title);
 
-    Gender getTitle();
+    Title getTitle();
 
     void setGender(Gender gender);
 
@@ -37,7 +41,7 @@ public interface Person extends CommonParent {
 
     void setDateOfBirth(Long dateOfBirth);
 
-    String getDateOfBirth();
+    Long getDateOfBirth();
 
     public enum Gender {
         MALE("Male"),

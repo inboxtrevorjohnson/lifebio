@@ -13,7 +13,7 @@ public interface CommonParent {
 
     Long getOID();
 
-    void setLastMofified(Long lastModified);
+    void setLastModified(Long lastModified);
 
     Long getLastModified();
 }
