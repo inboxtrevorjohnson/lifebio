@@ -3,16 +3,30 @@ package au.com.lifebio.lifebioperson.person;
 
 import au.com.lifebio.lifebioperson.common.CommonParentImpl;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import java.time.LocalDateTime;
+
 /**
- * The <code>PersonImpl</code> is used as a 'container' to
- * represent a persons state.
- *
- * @author <a href="mailto:inboxtrevorjohnson@gmail.com">ALR</a>
+ * Created by Trevor on 2018/06/18.
  */
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class PersonImpl extends CommonParentImpl implements Person   {
-    private Long dateOfBirth;
-    private String firstName, middleName, surname, nickName, identificationNumber;
+    private @Past LocalDateTime dateOfBirth;
+    @NotEmpty
+    private String firstName, surname;
+    private String nickName, middleName;
+    @NotEmpty
+    @Column(unique = true)
+    private String identificationNumber;
+    @NotNull
     private Person.Title title;
     private Person.Gender gender;
 
@@ -87,12 +101,12 @@ public class PersonImpl extends CommonParentImpl implements Person   {
     }
 
     @Override
-    public void setDateOfBirth(Long dateOfBirth) {
+    public void setDateOfBirth(LocalDateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
     @Override
-    public Long getDateOfBirth() {
+    public LocalDateTime getDateOfBirth() {
         return dateOfBirth;
     }
 

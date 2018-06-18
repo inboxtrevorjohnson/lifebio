@@ -2,11 +2,10 @@ package au.com.lifebio.lifebioperson.person;
 
 import au.com.lifebio.lifebioperson.common.CommonParent;
 
+import java.time.LocalDateTime;
+
 /**
- * The <code>Person</code> is used as a 'container' to
- * represent a persons state.
- *
- * @author <a href="mailto:inboxtrevorjohnson@gmail.com">ALR</a>
+ * Created by Trevor on 2018/06/18.
  */
 
 public interface Person extends CommonParent {
@@ -39,9 +38,9 @@ public interface Person extends CommonParent {
 
     String getIdentificationNumber();
 
-    void setDateOfBirth(Long dateOfBirth);
+    void setDateOfBirth(LocalDateTime dateOfBirth);
 
-    Long getDateOfBirth();
+    LocalDateTime getDateOfBirth();
 
     public enum Gender {
         MALE("Male"),

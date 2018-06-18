@@ -1,14 +1,21 @@
 package au.com.lifebio.lifebioperson.common;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
 /**
- * The <code>CommonParentImpl</code> is used as a 'container' to
- * represent a persons state.
- *
- * @author <a href="mailto:inboxtrevorjohnson@gmail.com">ALR</a>
+ * Created by Trevor on 2018/06/18.
  */
 
-public abstract class CommonParentImpl implements CommonParent {
-    protected Long oID, lastModified;
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class CommonParentImpl implements CommonParent {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long oID;
+    @NotNull
+    protected LocalDateTime lastModified;
 
     @Override
     public void setOID(Long oID) {
@@ -21,12 +28,12 @@ public abstract class CommonParentImpl implements CommonParent {
     }
 
     @Override
-    public void setLastModified(Long lastModified) {
+    public void setLastModified(LocalDateTime lastModified) {
         this.lastModified = lastModified;
     }
 
     @Override
-    public Long getLastModified() {
+    public LocalDateTime getLastModified() {
         return lastModified;
     }
 }

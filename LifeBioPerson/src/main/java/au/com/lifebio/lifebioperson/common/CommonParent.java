@@ -1,11 +1,9 @@
 package au.com.lifebio.lifebioperson.common;
 
+import java.time.LocalDateTime;
+
 /**
- * The <code>CommonParent</code> is used as a 'container' to
- * represent a objects state.
- *
- *
- * @author <a href="mailto:inboxtrevorjohnson@gmail.com">ALR</a>
+ * Created by Trevor on 2018/06/18.
  */
 public interface CommonParent {
 
@@ -13,7 +11,7 @@ public interface CommonParent {
 
     Long getOID();
 
-    void setLastModified(Long lastModified);
+    void setLastModified(LocalDateTime lastModified);
 
-    Long getLastModified();
+    LocalDateTime getLastModified();
 }

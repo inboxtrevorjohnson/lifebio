@@ -1,10 +1,7 @@
 package au.com.lifebio.lifebioperson.exception;
 
 /**
- * The <code>ResourceNotFoundException</code> is used as the 'exception handler' to
- * handle all cases where a resource can not be found.
- *
- * @author <a href="mailto:inboxtrevorjohnson@gmail.com">ALR</a>
+ * Created by Trevor on 2018/06/18.
  */
 public class ResourceNotFoundException extends RuntimeException {
 
