@@ -5,6 +5,9 @@ import au.com.lifebio.lifebioperson.serviceProvider.ServiceProviderImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+import java.util.Set;
+
 /**
  * Created by Trevor on 2018/06/18.
  */
@@ -12,5 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ServiceProviderRepository extends JpaRepository<ServiceProviderImpl, Long> {
 
-    ServiceProvider findByPractiseNumber(String practiseNumber);
+    Optional<ServiceProvider> findByPractiseNumber(String practiseNumber);
+
+    Set<ServiceProvider> findByServiceProviderNameLike(String serviceProviderNameLike);
 }

@@ -20,13 +20,13 @@ import java.time.LocalDateTime;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PersonImpl extends CommonParentImpl implements Person   {
     private @Past LocalDateTime dateOfBirth;
-    @NotEmpty
+    @NotEmpty(message = "First name and surname cannot be empty.")
     private String firstName, surname;
     private String nickName, middleName;
-    @NotEmpty
+    @NotEmpty(message = "Identification number cannot be empty.")
     @Column(unique = true)
     private String identificationNumber;
-    @NotNull
+    @NotNull(message = "A title must be specified.")
     private Person.Title title;
     private Person.Gender gender;
 

@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -40,10 +41,11 @@ public class ServiceProviderRepositoryTest {
         entityManager.flush();
 
         /* When */
-        ServiceProvider found = serviceProviderRepository.findByPractiseNumber(practiseNumber);
+        Optional<ServiceProvider> found = serviceProviderRepository.findByPractiseNumber(practiseNumber);
 
         /* Then */
-        assertThat(found.getPractiseNumber()).isEqualTo(practiseNumber);
+        assertThat(found.isPresent());
+        assertThat(found.get().getPractiseNumber()).isEqualTo(practiseNumber);
     }
 
 }

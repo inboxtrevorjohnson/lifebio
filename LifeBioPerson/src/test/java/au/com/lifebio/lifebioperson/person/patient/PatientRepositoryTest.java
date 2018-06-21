@@ -1,6 +1,9 @@
-package au.com.lifebio.lifebioperson.person;
+package au.com.lifebio.lifebioperson.person.patient;
 
+import au.com.lifebio.lifebioperson.person.Person;
+import au.com.lifebio.lifebioperson.person.PersonImpl;
 import au.com.lifebio.lifebioperson.person.dao.PersonRepository;
+import au.com.lifebio.lifebioperson.person.patient.dao.PatientRepository;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,15 +22,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class PersonRepositoryTest {
+public class PatientRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private PersonRepository personRepository;
+    private PatientRepository patientRepository;
 
     @Test
-    public void whenFindByIdentificationNumber_thenReturnPerson() {
+    public void whenFindByOID_thenReturnPatient() {
         /* Given */
         String firstName = RandomStringUtils.random(10);
         String surname = RandomStringUtils.random(10);
@@ -37,7 +40,7 @@ public class PersonRepositoryTest {
         Person.Gender gender = Person.Gender.MALE;
         Person.Title title = Person.Title.CAPT;
 
-        Person given = new PersonImpl();
+        Patient given = new PatientImpl();
         given.setFirstName(firstName);
         given.setSurname(surname);
         given.setMiddleName(middleName);
@@ -47,15 +50,14 @@ public class PersonRepositoryTest {
         given.setTitle(title);
         given.setLastModified(LocalDateTime.now());
 
-        entityManager.persist(given);
+        Long oID = entityManager.persist(given).getOID();
         entityManager.flush();
 
         /* When */
-        Optional<Person> found = personRepository.findByIdentificationNumber(identificationNumber);
+        Optional<PatientImpl> found = patientRepository.findById(oID);
 
         /* Then */
         assertThat(found.isPresent());
-        assertThat(found.get().getIdentificationNumber()).isEqualTo(identificationNumber);
+        assertThat((found.get().getOID())).isEqualTo(oID);
     }
-
 }

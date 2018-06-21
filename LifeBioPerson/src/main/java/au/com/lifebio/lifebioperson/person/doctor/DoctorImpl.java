@@ -14,10 +14,10 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 public class DoctorImpl extends PersonImpl implements Doctor   {
 
-    @NotEmpty
+    @NotEmpty(message = "A practise number must be specified.")
     private String practiseNumber;
     private boolean isReferringDoctor, solePractitioner;
-    @NotEmpty
+    @NotEmpty(message = "A service provider name must be specified.")
     @Column(unique = true)
     private String name;
 

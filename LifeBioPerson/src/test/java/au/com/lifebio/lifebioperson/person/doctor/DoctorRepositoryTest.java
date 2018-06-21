@@ -1,9 +1,7 @@
-package au.com.lifebio.lifebioperson.doctor;
+package au.com.lifebio.lifebioperson.person.doctor;
 
-import au.com.lifebio.lifebioperson.doctor.dao.DoctorRepository;
+import au.com.lifebio.lifebioperson.person.doctor.dao.DoctorRepository;
 import au.com.lifebio.lifebioperson.person.Person;
-import au.com.lifebio.lifebioperson.person.doctor.Doctor;
-import au.com.lifebio.lifebioperson.person.doctor.DoctorImpl;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -59,10 +58,11 @@ public class DoctorRepositoryTest {
         entityManager.flush();
 
         /* When */
-        Doctor found = doctorRepository.findByPractiseNumber(practiseNumber);
+        Optional<Doctor> found = doctorRepository.findByPractiseNumber(practiseNumber);
 
         /* Then */
-        assertThat(found.getPractiseNumber()).isEqualTo(practiseNumber);
+        assertThat(found.isPresent());
+        assertThat(found.get().getPractiseNumber()).isEqualTo(practiseNumber);
     }
 
 }
