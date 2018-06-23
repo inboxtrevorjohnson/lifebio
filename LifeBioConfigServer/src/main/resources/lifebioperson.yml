@@ -1,0 +1,5 @@
+spring:
+  application:
+    name:lifebioperson
+  profiles:
+    active:development
