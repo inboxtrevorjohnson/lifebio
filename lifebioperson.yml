@@ -1,4 +1,4 @@
-serve:
+server:
   port: 4001
 
 spring:
