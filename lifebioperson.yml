@@ -1,11 +1,6 @@
 server:
   port: 4001
 
-spring:
-  cloud:
-    config:
-      uri: http://localhost:8888
-
 eureka:
   instance:
     hostname: ${vcap.application.uris[0]:localhost}
