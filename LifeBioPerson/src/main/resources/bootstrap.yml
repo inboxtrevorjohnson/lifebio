@@ -4,6 +4,5 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
-      basedir: target/config
   profiles:
     active: default
