@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: lifebioperson
+  cloud:
+    config:
+      uri: http://localhost:8888
+      basedir: target/config
+  profiles:
+    active: default

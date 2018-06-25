@@ -1,4 +1,4 @@
-package au.com.lifebio.lifebioserver;
+package au.com.lifebio.eurekaserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
