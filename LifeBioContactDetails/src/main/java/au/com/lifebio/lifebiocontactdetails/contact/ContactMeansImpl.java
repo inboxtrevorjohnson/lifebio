@@ -2,17 +2,13 @@ package au.com.lifebio.lifebiocontactdetails.contact;
 
 import au.com.lifebio.lifebiocontactdetails.common.CommonParentImpl;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Created by Trevor on 2018/06/20.
  */
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public class ContactMeansImpl extends CommonParentImpl implements ContactMeans{
     @NotNull(message = "A contact type must be specified.")
     private ContactType contactType;

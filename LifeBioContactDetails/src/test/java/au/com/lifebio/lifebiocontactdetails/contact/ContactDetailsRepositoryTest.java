@@ -1,14 +1,17 @@
 package au.com.lifebio.lifebiocontactdetails.contact;
 
 import au.com.lifebio.lifebiocontactdetails.contact.dao.ContactDetailsRepository;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,11 +28,20 @@ public class ContactDetailsRepositoryTest {
     @Autowired
     private ContactDetailsRepository contactDetailsRepository;
 
+    @Autowired private ApplicationContext appContext;
+
+    @Before
+    public void setUp(){
+        Arrays.stream(appContext.getBeanDefinitionNames()).forEach(beanName -> System.out.println("@#@#@#@@@#@#@#" + beanName));
+    }
+
     @Test
     public void whenFindByOID_thenReturnContactDetails() {
         /* Given */
         ContactDetails given = new ContactDetailsImpl();
         given.setLastModified(LocalDateTime.now());
+
+        System.out.println("@#@#@#@##@#@#@#@#@#@#@#@#@#@#@#");
 
         Long oID = entityManager.persist(given).getOID();
         entityManager.flush();

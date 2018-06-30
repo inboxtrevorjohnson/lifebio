@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 /**
  * Created by Trevor on 2018/06/18.
  */
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CommonParentImpl implements CommonParent {

@@ -2,7 +2,6 @@ package au.com.lifebio.lifebiocontactdetails.contact;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 
 /**
  * Created by Trevor on 2018/06/20.

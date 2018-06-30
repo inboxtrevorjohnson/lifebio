@@ -1,6 +1,5 @@
 package au.com.lifebio.lifebiocontactdetails.contact;
 
-import au.com.lifebio.lifebiocontactdetails.contact.dao.ContactDetailsRepository;
 import au.com.lifebio.lifebiocontactdetails.contact.dao.ContactNumberRepository;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
