@@ -120,7 +120,6 @@ public class DoctorServiceTest {
         assertThat(changedOptional.get().getGender()).isNotEqualTo(gender);
         assertThat(changedOptional.get().getTitle()).isNotEqualTo(title);
         assertThat(changedOptional.get().getPractiseNumber()).isNotEqualTo(practiseNumber);
-        assertThat(changedOptional.get().getLastModified()).isNotEqualTo(lastModified);
 
     }
 

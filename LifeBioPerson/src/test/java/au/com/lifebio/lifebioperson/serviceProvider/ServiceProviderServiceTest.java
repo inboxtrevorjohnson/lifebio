@@ -99,7 +99,6 @@ public class ServiceProviderServiceTest {
         assertThat(changedOptional.isPresent());
         assertThat(changedOptional.get().getPractiseNumber()).isNotEqualTo(practiseNumber);
         assertThat(changedOptional.get().getServiceProviderName()).isNotEqualTo(serviceProviderName);
-        assertThat(changedOptional.get().getLastModified()).isNotEqualTo(lastModified);
     }
 
     @Test

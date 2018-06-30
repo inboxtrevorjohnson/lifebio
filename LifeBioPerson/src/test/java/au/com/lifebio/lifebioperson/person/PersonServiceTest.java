@@ -116,8 +116,6 @@ public class PersonServiceTest {
         assertThat(changedOptional.get().getIdentificationNumber()).isNotEqualTo(identificationNumber);
         assertThat(changedOptional.get().getGender()).isNotEqualTo(gender);
         assertThat(changedOptional.get().getTitle()).isNotEqualTo(title);
-        assertThat(changedOptional.get().getLastModified()).isNotEqualTo(lastModified);
-
     }
 
     @Test
