@@ -23,7 +23,7 @@ public class TypeNotSupportedException extends RuntimeException {
     @Override
     public String toString() {
         if(message == null || message.length() > 1){
-            return "Resource Not Found!";
+            return "Type Not Found!";
         }
         return message;
     }

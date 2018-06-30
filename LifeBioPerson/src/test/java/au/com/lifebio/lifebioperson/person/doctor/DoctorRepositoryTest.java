@@ -1,7 +1,7 @@
 package au.com.lifebio.lifebioperson.person.doctor;
 
-import au.com.lifebio.lifebioperson.person.doctor.dao.DoctorRepository;
 import au.com.lifebio.lifebioperson.person.Person;
+import au.com.lifebio.lifebioperson.person.doctor.dao.DoctorRepository;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;

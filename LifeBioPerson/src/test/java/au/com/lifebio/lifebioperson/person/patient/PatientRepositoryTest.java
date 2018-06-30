@@ -1,8 +1,6 @@
 package au.com.lifebio.lifebioperson.person.patient;
 
 import au.com.lifebio.lifebioperson.person.Person;
-import au.com.lifebio.lifebioperson.person.PersonImpl;
-import au.com.lifebio.lifebioperson.person.dao.PersonRepository;
 import au.com.lifebio.lifebioperson.person.patient.dao.PatientRepository;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;

@@ -1,6 +1,7 @@
 package au.com.lifebio.lifebioperson.person;
 
 import au.com.lifebio.lifebioperson.common.CommonParent;
+import au.com.lifebio.lifebioperson.contact.Contactable;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
  * Created by Trevor on 2018/06/18.
  */
 
-public interface Person extends CommonParent {
+public interface Person extends CommonParent, Contactable {
 
     void setFirstName(String firstName);
 

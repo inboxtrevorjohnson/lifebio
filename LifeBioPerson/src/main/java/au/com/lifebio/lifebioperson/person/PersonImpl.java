@@ -29,6 +29,7 @@ public class PersonImpl extends CommonParentImpl implements Person   {
     @NotNull(message = "A title must be specified.")
     private Person.Title title;
     private Person.Gender gender;
+    private Long contactDetailsOID;
 
     @Override
     public void setFirstName(String firstName) {
@@ -110,4 +111,13 @@ public class PersonImpl extends CommonParentImpl implements Person   {
         return dateOfBirth;
     }
 
+    @Override
+    public void setContactDetails(Long contactDetailsOID) {
+        this.contactDetailsOID = contactDetailsOID;
+    }
+
+    @Override
+    public Long getContactDetails() {
+        return this.contactDetailsOID;
+    }
 }

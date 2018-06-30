@@ -1,7 +1,5 @@
 package au.com.lifebio.lifebioperson.person.patient;
 
-import au.com.lifebio.lifebioperson.person.patient.Patient;
-import au.com.lifebio.lifebioperson.person.patient.PatientImpl;
 import au.com.lifebio.lifebioperson.person.patient.dao.PatientRepository;
 import au.com.lifebio.lifebioperson.person.patient.service.PatientService;
 import au.com.lifebio.lifebioperson.person.patient.service.PatientServiceImpl;
@@ -20,7 +18,6 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

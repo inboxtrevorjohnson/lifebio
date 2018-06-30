@@ -18,6 +18,7 @@ public class ServiceProviderImpl extends CommonParentImpl implements ServiceProv
     @NotEmpty(message = "A service provider name must be specified.")
     @Column(unique = true)
     private String serviceProviderName;
+    private Long contactDetailsOID;
 
     @Override
     public void setPractiseNumber(String practiseNumber) {
@@ -37,5 +38,15 @@ public class ServiceProviderImpl extends CommonParentImpl implements ServiceProv
     @Override
     public String getServiceProviderName() {
         return this.serviceProviderName;
+    }
+
+    @Override
+    public void setContactDetails(Long contactDetailsOID) {
+        this.contactDetailsOID = contactDetailsOID;
+    }
+
+    @Override
+    public Long getContactDetails() {
+        return this.contactDetailsOID;
     }
 }
