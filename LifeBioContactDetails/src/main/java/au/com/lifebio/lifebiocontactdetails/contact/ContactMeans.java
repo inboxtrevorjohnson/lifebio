@@ -1,6 +1,6 @@
 package au.com.lifebio.lifebiocontactdetails.contact;
 
-import au.com.lifebio.lifebiocontactdetails.common.CommonParent;
+import au.com.lifebio.lifebiocommon.common.CommonParent;
 
 /**
  * Created by Trevor on 2018/06/20.

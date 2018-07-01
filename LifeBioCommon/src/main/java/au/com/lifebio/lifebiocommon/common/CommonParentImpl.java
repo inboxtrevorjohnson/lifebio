@@ -1,4 +1,4 @@
-package au.com.lifebio.lifebiocontactdetails.common;
+package au.com.lifebio.lifebiocommon.common;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

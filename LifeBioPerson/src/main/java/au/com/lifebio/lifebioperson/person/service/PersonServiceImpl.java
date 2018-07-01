@@ -1,6 +1,6 @@
 package au.com.lifebio.lifebioperson.person.service;
 
-import au.com.lifebio.lifebioperson.exception.TypeNotSupportedException;
+import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.person.Person;
 import au.com.lifebio.lifebioperson.person.PersonImpl;
 import au.com.lifebio.lifebioperson.person.dao.PersonRepository;

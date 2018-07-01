@@ -70,6 +70,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>au.com.lifebio</groupId>
+			<artifactId>LifeBioCommon</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

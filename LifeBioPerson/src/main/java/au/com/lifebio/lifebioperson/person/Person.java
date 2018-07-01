@@ -1,6 +1,6 @@
 package au.com.lifebio.lifebioperson.person;
 
-import au.com.lifebio.lifebioperson.common.CommonParent;
+import au.com.lifebio.lifebiocommon.common.CommonParent;
 import au.com.lifebio.lifebioperson.contact.Contactable;
 
 import java.time.LocalDateTime;

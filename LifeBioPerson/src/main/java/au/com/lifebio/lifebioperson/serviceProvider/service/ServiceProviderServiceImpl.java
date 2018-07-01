@@ -1,6 +1,6 @@
 package au.com.lifebio.lifebioperson.serviceProvider.service;
 
-import au.com.lifebio.lifebioperson.exception.TypeNotSupportedException;
+import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.serviceProvider.ServiceProvider;
 import au.com.lifebio.lifebioperson.serviceProvider.ServiceProviderImpl;
 import au.com.lifebio.lifebioperson.serviceProvider.dao.ServiceProviderRepository;

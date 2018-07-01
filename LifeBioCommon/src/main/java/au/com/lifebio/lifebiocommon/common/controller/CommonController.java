@@ -1,6 +1,7 @@
-package au.com.lifebio.lifebioperson.common.controller;
+package au.com.lifebio.lifebiocommon.common.controller;
 
-import au.com.lifebio.lifebioperson.exception.ResourceNotFoundException;
+
+import au.com.lifebio.lifebiocommon.common.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

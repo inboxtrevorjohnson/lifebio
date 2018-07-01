@@ -1,6 +1,6 @@
 package au.com.lifebio.lifebiocontactdetails.contact;
 
-import au.com.lifebio.lifebiocontactdetails.common.CommonParentImpl;
+import au.com.lifebio.lifebiocommon.common.CommonParentImpl;
 
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;

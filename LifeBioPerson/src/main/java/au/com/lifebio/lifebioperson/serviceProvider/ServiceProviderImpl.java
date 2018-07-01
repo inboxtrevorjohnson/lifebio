@@ -1,6 +1,6 @@
 package au.com.lifebio.lifebioperson.serviceProvider;
 
-import au.com.lifebio.lifebioperson.common.CommonParentImpl;
+import au.com.lifebio.lifebiocommon.common.CommonParentImpl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

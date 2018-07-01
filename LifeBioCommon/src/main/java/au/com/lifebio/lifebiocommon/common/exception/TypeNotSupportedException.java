@@ -1,4 +1,4 @@
-package au.com.lifebio.lifebioperson.exception;
+package au.com.lifebio.lifebiocommon.common.exception;
 
 /**
  * Created by Trevor on 2018/06/18.

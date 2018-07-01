@@ -1,6 +1,6 @@
 package au.com.lifebio.lifebioperson.person.patient.controller;
 
-import au.com.lifebio.lifebioperson.common.controller.CommonController;
+import au.com.lifebio.lifebiocommon.common.controller.CommonController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

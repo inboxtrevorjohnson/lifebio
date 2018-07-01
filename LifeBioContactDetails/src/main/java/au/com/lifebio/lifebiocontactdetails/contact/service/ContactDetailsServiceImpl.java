@@ -3,7 +3,7 @@ package au.com.lifebio.lifebiocontactdetails.contact.service;
 import au.com.lifebio.lifebiocontactdetails.contact.ContactDetails;
 import au.com.lifebio.lifebiocontactdetails.contact.ContactDetailsImpl;
 import au.com.lifebio.lifebiocontactdetails.contact.dao.ContactDetailsRepository;
-import au.com.lifebio.lifebiocontactdetails.exception.TypeNotSupportedException;
+import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 
