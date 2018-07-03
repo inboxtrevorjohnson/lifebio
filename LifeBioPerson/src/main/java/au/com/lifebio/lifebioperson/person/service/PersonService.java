@@ -1,6 +1,7 @@
 package au.com.lifebio.lifebioperson.person.service;
 
 import au.com.lifebio.lifebioperson.person.Person;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.Set;
  * Created by Trevor on 2018/06/21.
  */
 
+@Service
 public interface PersonService {
 
     Optional<Person> addPerson(Person person);
