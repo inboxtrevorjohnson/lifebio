@@ -1,0 +1,16 @@
+server:
+  port: 4002
+
+# Registration server details
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]:localhost}
+    nonSecurePort: 80
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    leaseRenewalIntervalInSeconds: 10
+  client:
+    region: default
+  serviceUrl:
+    defaultZone: http://localhost:8761/eureka/
+    fetchRegistry: true
