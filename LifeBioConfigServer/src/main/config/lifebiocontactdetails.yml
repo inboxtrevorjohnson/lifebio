@@ -1,6 +1,7 @@
 server:
   port: 4002
 
+# Registration server details
 eureka:
   instance:
     hostname: ${vcap.application.uris[0]:localhost}
