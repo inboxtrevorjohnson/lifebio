@@ -1,20 +1,9 @@
 package au.com.lifebio.lifebiocommon.common.controller;
 
-
-import au.com.lifebio.lifebiocommon.common.exception.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 /**
  * Created by Trevor on 2018/06/18.
  */
-public class CommonController {
+public interface CommonController {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Error resourceNotFound(ResourceNotFoundException exception) {
-        return new Error(exception.getMessage());
-    }
-
+    String error();
 }
