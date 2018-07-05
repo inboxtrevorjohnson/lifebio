@@ -7,4 +7,4 @@ spring:
       server:
         git:
           uri: https://github.com/inboxtrevorjohnson/lifebio
-          basedir: LifeBioConfigServer/src/main/resources/
+          basedir: LifeBioConfigServer/src/main/config/
