@@ -1,4 +1,4 @@
-package au.com.lifebio.lifebiocontactdetails.contact;
+package au.com.lifebio.lifebiocontactdetails.contact.model;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.Pattern;

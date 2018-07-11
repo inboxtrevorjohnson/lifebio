@@ -1,4 +1,4 @@
-package au.com.lifebio.lifebiocontactdetails.contact;
+package au.com.lifebio.lifebiocontactdetails.contact.model;
 
 /**
  * Created by Trevor on 2018/06/20.

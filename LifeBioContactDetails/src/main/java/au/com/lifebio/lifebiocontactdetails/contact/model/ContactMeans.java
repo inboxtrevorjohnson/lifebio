@@ -1,4 +1,4 @@
-package au.com.lifebio.lifebiocontactdetails.contact;
+package au.com.lifebio.lifebiocontactdetails.contact.model;
 
 import au.com.lifebio.lifebiocommon.common.CommonParent;
 

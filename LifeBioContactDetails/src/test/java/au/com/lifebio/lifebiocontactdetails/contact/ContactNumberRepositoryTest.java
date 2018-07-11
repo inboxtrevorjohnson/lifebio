@@ -1,6 +1,9 @@
 package au.com.lifebio.lifebiocontactdetails.contact;
 
 import au.com.lifebio.lifebiocontactdetails.contact.dao.ContactNumberRepository;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumber;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumberImpl;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactType;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;

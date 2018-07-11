@@ -1,6 +1,7 @@
 package au.com.lifebio.lifebiocontactdetails.contact.service;
 
-import au.com.lifebio.lifebiocontactdetails.contact.ContactDetails;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumber;
 
 import java.util.Optional;
 import java.util.Set;
@@ -21,4 +22,5 @@ public interface ContactDetailsService {
     Optional<Set<ContactDetails>> findAll();
 
     void deleteContactDetails(ContactDetails contactDetails);
+
 }

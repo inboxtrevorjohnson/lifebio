@@ -1,6 +1,10 @@
 package au.com.lifebio.lifebiocontactdetails.contact;
 
 import au.com.lifebio.lifebiocontactdetails.contact.dao.ContactDetailsRepository;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetailsImpl;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumber;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumberImpl;
 import au.com.lifebio.lifebiocontactdetails.contact.service.ContactDetailsService;
 import au.com.lifebio.lifebiocontactdetails.contact.service.ContactDetailsServiceImpl;
 import org.junit.Before;
@@ -41,21 +45,26 @@ public class ContactDetailsServiceTest {
 
 
     /* Given */
-    private ContactDetails given = new ContactDetailsImpl();
+    private ContactDetails givenContactDetails = new ContactDetailsImpl();
+
+    private ContactNumber givenContactNumber = new ContactNumberImpl();
 
     @Before
     public void setUp() {
-        given.setLastModified(lastModified);
+        /* Contact Details*/
+        givenContactDetails.setOID(1L);
+        givenContactDetails.setLastModified(lastModified);
 
-        Optional<ContactDetails> optional = Optional.of(given);
+        Optional<ContactDetails> optional = Optional.of(givenContactDetails);
 
-        Optional<ContactDetailsImpl> optionalImpl = Optional.of((ContactDetailsImpl) given);
+        Optional<ContactDetailsImpl> optionalImpl = Optional.of((ContactDetailsImpl) givenContactDetails);
 
         /* Add and Change */
-        Mockito.when(contactDetailsRepository.save((ContactDetailsImpl)given)).thenReturn((ContactDetailsImpl) given);
+        Mockito.when(contactDetailsRepository.save((ContactDetailsImpl) givenContactDetails)).thenReturn(
+                (ContactDetailsImpl) givenContactDetails);
 
         /* Find By ID */
-        Mockito.when(contactDetailsRepository.findById(given.getOID())).thenReturn(optionalImpl);
+        Mockito.when(contactDetailsRepository.findById(givenContactDetails.getOID())).thenReturn(optionalImpl);
 
         /* Find All */
         ContactDetailsImpl [] list = {new ContactDetailsImpl(), new ContactDetailsImpl(), new ContactDetailsImpl(),
@@ -74,7 +83,7 @@ public class ContactDetailsServiceTest {
     @Test
     public void whenAdd_thenContactDetailsShouldBeFound() {
         Optional<ContactDetails> added = contactDetailsService.addContactDetails(contactDetailsRepository.save(
-                (ContactDetailsImpl) given));
+                (ContactDetailsImpl) givenContactDetails));
 
         /* Check */
         assertThat(added.isPresent());
@@ -84,7 +93,7 @@ public class ContactDetailsServiceTest {
     @Test
     public void whenChange_thenChangedContactDetailsShouldBeFound() {
         Optional<ContactDetails> changed = contactDetailsService.addContactDetails(contactDetailsRepository.save(
-                (ContactDetailsImpl) given));
+                (ContactDetailsImpl) givenContactDetails));
 
         /* Check */
         assertThat(changed.isPresent());
@@ -98,8 +107,8 @@ public class ContactDetailsServiceTest {
     }
 
     @Test
-    public void whenValidOID_thenServiceProviderShouldBeFound() {
-        Long oID = contactDetailsRepository.save((ContactDetailsImpl) given).getOID();
+    public void whenValidOID_thenContactDetailsShouldBeFound() {
+        Long oID = contactDetailsRepository.save((ContactDetailsImpl) givenContactDetails).getOID();
         Optional<ContactDetails> found = contactDetailsService.findContactDetails(oID);
 
         /* Check */
@@ -128,14 +137,14 @@ public class ContactDetailsServiceTest {
 
     @Test
     public void whenContactDetailsDeleted_thenShouldNotBeFound() {
-        Optional<ContactDetailsImpl> found = Optional.of(contactDetailsRepository.save((ContactDetailsImpl) given));
+        Optional<ContactDetailsImpl> found = Optional.of(contactDetailsRepository.save((ContactDetailsImpl) givenContactDetails));
         assertThat(found.isPresent());
         contactDetailsService.deleteContactDetails(found.get());
         Mockito.verify(contactDetailsRepository).delete(found.get());
     }
 
     @TestConfiguration
-    static class ServiceProviderServiceImplTestContextConfiguration {
+    static class ContactDetailsServiceImplTestContextConfiguration {
 
         @Bean
         public ContactDetailsService contactDetailsService() {
@@ -147,5 +156,6 @@ public class ContactDetailsServiceTest {
             return new ContactDetailsImpl();
         }
     }
+
 
 }

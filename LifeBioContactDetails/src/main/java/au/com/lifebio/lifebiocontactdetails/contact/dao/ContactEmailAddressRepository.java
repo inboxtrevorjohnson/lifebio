@@ -1,6 +1,6 @@
 package au.com.lifebio.lifebiocontactdetails.contact.dao;
 
-import au.com.lifebio.lifebiocontactdetails.contact.ContactEmailAddressImpl;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactEmailAddressImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

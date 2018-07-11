@@ -1,4 +1,4 @@
-package au.com.lifebio.lifebiocontactdetails.contact;
+package au.com.lifebio.lifebiocontactdetails.contact.model;
 
 import au.com.lifebio.lifebiocommon.common.CommonParentImpl;
 
@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,11 +16,11 @@ import java.util.List;
 public class ContactDetailsImpl extends CommonParentImpl implements ContactDetails{
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    private List<ContactAddressImpl> contactAddresses;
+    private List<ContactAddressImpl> contactAddresses = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    private List<ContactNumberImpl> contactNumbers;
+    private List<ContactNumberImpl> contactNumbers = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    private List<ContactEmailAddressImpl> contactEmailAddresses;
+    private List<ContactEmailAddressImpl> contactEmailAddresses = new ArrayList<>();
 
     @Override
     public void setContactAddresses(List<ContactAddressImpl> contactAddresses) {

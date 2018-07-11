@@ -1,8 +1,11 @@
-package au.com.lifebio.lifebiocontactdetails.contact;
+package au.com.lifebio.lifebiocontactdetails.contact.model;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * Created by Trevor on 2018/06/20.
  */
+@JsonDeserialize(as = ContactAddressImpl.class)
 public interface ContactAddress extends ContactMeans {
 
     void setLine1(String line1);
