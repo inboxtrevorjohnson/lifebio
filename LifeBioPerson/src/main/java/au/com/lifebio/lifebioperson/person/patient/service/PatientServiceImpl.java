@@ -1,5 +1,6 @@
 package au.com.lifebio.lifebioperson.person.patient.service;
 
+import au.com.lifebio.lifebiocommon.common.exception.ModificationException;
 import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.person.patient.Patient;
 import au.com.lifebio.lifebioperson.person.patient.PatientImpl;
@@ -7,6 +8,7 @@ import au.com.lifebio.lifebioperson.person.patient.dao.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -19,6 +21,7 @@ import java.util.Set;
  */
 
 @Service
+@Transactional
 public class PatientServiceImpl implements PatientService {
 
     @Autowired
@@ -32,6 +35,11 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Optional<Patient> changePatient(@NotNull(message = "Cannot change null patient.")Patient patient) {
+        if(!patient.getLastModified().equals(patientRepository.findById(patient.getOID()).orElseThrow(
+                () -> new ResourceNotFoundException("Cannot change patient, cannot find patient!") )
+                .getLastModified())){
+            throw new ModificationException("Cannot change patient, it has been modified by someone else!");
+        }
         if(patient instanceof PatientImpl) {
             patient.setLastModified(LocalDateTime.now());
             return Optional.of(patientRepository.save((PatientImpl)patient));

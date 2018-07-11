@@ -1,5 +1,6 @@
 package au.com.lifebio.lifebioperson.person.service;
 
+import au.com.lifebio.lifebiocommon.common.exception.ModificationException;
 import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.person.Person;
 import au.com.lifebio.lifebioperson.person.PersonImpl;
@@ -7,6 +8,7 @@ import au.com.lifebio.lifebioperson.person.dao.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -20,6 +22,7 @@ import java.util.Set;
  */
 
 @Service
+@Transactional
 public class PersonServiceImpl implements PersonService {
 
     @Autowired
@@ -33,6 +36,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Optional<Person> changePerson(@NotNull(message = "Cannot change null person.")Person person) {
+        if(!person.getLastModified().equals(personRepository.findById(person.getOID()).orElseThrow(
+                () -> new ResourceNotFoundException("Cannot change person, cannot find person!") )
+                .getLastModified())){
+            throw new ModificationException("Cannot change person, it has been modified by someone else!");
+        }
         if(person instanceof PersonImpl) {
             person.setLastModified(LocalDateTime.now());
             return Optional.of(personRepository.save((PersonImpl)person));

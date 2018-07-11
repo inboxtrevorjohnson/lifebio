@@ -1,5 +1,6 @@
 package au.com.lifebio.lifebioperson.serviceProvider.service;
 
+import au.com.lifebio.lifebiocommon.common.exception.ModificationException;
 import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.serviceProvider.ServiceProvider;
 import au.com.lifebio.lifebioperson.serviceProvider.ServiceProviderImpl;
@@ -7,6 +8,7 @@ import au.com.lifebio.lifebioperson.serviceProvider.dao.ServiceProviderRepositor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -20,6 +22,7 @@ import java.util.Set;
  */
 
 @Service
+@Transactional
 public class ServiceProviderServiceImpl implements ServiceProviderService {
 
     @Autowired
@@ -35,6 +38,11 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
     @Override
     public Optional<ServiceProvider> changeServiceProvider(@NotNull(message = "Cannot change null service provider.")
                                                                        ServiceProvider serviceProvider) {
+        if(!serviceProvider.getLastModified().equals(serviceProviderRepository.findById(serviceProvider.getOID())
+                .orElseThrow(() -> new ResourceNotFoundException("Cannot change service provider, cannot find service " +
+                        "provider!") ).getLastModified())){
+            throw new ModificationException("Cannot change service provider, it has been modified by someone else!");
+        }
         if(serviceProvider instanceof ServiceProviderImpl) {
             serviceProvider.setLastModified(LocalDateTime.now());
             return Optional.of(serviceProviderRepository.save((ServiceProviderImpl)serviceProvider));

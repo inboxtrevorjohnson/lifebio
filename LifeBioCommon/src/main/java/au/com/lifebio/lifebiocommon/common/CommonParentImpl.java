@@ -13,7 +13,6 @@ public class CommonParentImpl implements CommonParent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long oID;
-    @NotNull
     protected LocalDateTime lastModified;
 
     @Override
@@ -38,7 +37,7 @@ public class CommonParentImpl implements CommonParent {
 
     @Override
     public boolean equals(Object object) {
-        if (object != null && object instanceof CommonParent && this.oID != null) {
+        if (object != null && (object instanceof CommonParent && this.oID != null)) {
             return ((CommonParent) object).getOID().equals(this.oID);
         }
         return false;

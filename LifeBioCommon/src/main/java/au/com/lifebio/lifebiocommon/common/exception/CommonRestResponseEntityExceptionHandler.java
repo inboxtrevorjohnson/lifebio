@@ -14,23 +14,34 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CommonRestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private String bodyOfResponse = "CONFLICT Update this error message....";
-    private String resourceNotFoundResponse = "NOT FOUND Update this error message....";
-    private String typeNotSupporteddResponse = "BAD REQUEST Update this error message....";
-
     @ExceptionHandler(value = { IllegalArgumentException.class, IllegalStateException.class })
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
     @ExceptionHandler(value = { ResourceNotFoundException.class })
     protected ResponseEntity<Object> handleResourceNotFound(RuntimeException ex, WebRequest request) {
-        return handleExceptionInternal(ex, resourceNotFoundResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(value = { CreationException.class })
+    protected ResponseEntity<Object> handleResourceNotPosted(RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = { ModificationException.class })
+    protected ResponseEntity<Object> handleResourceNotPut(RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_MODIFIED, request);
+    }
+
+    @ExceptionHandler(value = { RemoveException.class })
+    protected ResponseEntity<Object> handleResourceNotDeleted(RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_MODIFIED, request);
     }
 
     @ExceptionHandler(value = { TypeNotSupportedException.class })
     protected ResponseEntity<Object> handleTypeNotSupported(RuntimeException ex, WebRequest request) {
-        return handleExceptionInternal(ex, typeNotSupporteddResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
 }
