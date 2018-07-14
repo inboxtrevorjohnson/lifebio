@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -102,7 +103,8 @@ public class ContactDetailsContactNumberControllerImpl implements ContactDetails
     }
 
     @Override
-    @DeleteMapping(value = OID_PATH_VARIABLE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = CONTACT_DETAILS_OID_PATH_VARIABLE + OID_PATH_VARIABLE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteContactDetailsContactNumber(@PathVariable Long contactDetailsOID, @PathVariable Long oID) {
         if(contactDetailsOID == null || oID == null){
             throw new IllegalArgumentException("Cannot delete contact number, a valid contact details oid and oid must " +

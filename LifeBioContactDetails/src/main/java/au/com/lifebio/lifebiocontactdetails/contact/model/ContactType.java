@@ -1,5 +1,7 @@
 package au.com.lifebio.lifebiocontactdetails.contact.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Created by Trevor on 2018/06/20.
  */
@@ -14,6 +16,7 @@ public enum ContactType {
         this.description = description;
     }
 
+    @JsonValue
     public String getDescription() {
         return this.description;
     }

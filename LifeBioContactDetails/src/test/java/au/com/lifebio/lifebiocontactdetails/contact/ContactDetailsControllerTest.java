@@ -191,15 +191,12 @@ public class ContactDetailsControllerTest {
             contactDetailOIDs[i] = create.getOID();
         }
 
-        String contactDetailsJson = json(contactDetailOIDs);
-
         mockMvc.perform(get(CONTACT_DETAILS_URL + "/all")
-                .contentType(contentType)
-                .content(contactDetailsJson))
+                .contentType(contentType))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(10)));
+                .andExpect(jsonPath("$", hasSize(11)));
     }
 
     public void deleteContactDetails() throws Exception {
@@ -207,8 +204,7 @@ public class ContactDetailsControllerTest {
         String contactDetailsJson = json(contactDetails);
 
         this.mockMvc.perform(delete(CONTACT_DETAILS_URL + "/" + contactDetails.getOID())
-                .contentType(contentType)
-                .content(contactDetailsJson))
+                .contentType(contentType))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }

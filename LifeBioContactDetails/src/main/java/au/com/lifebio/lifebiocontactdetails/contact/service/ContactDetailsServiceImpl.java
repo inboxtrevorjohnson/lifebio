@@ -72,12 +72,6 @@ public class ContactDetailsServiceImpl implements ContactDetailsService {
     }
 
     @Override
-    public Optional<Set<ContactDetails>> findAllContactDetailsByOID(@NotNull(message = "Cannot find all contact " +
-            "details by oid with out an valid list.") Set<Long> contactDetailsOIDs) {
-        return Optional.of(new HashSet<ContactDetails>(contactDetailsRepository.findAllById(contactDetailsOIDs)));
-    }
-
-    @Override
     public void deleteContactDetails(@NotNull(message = "Cannot delete contact details, a valid contact details must " +
             "be specified.") ContactDetails contactDetails) {
         if(contactDetails.getOID() == null){

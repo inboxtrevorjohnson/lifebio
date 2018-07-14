@@ -17,8 +17,6 @@ public interface ContactDetailsService {
 
     Optional<ContactDetails> findContactDetails(Long oID);
 
-    Optional<Set<ContactDetails>> findAllContactDetailsByOID(Set<Long> contactDetailsOIDs);
-
     Optional<Set<ContactDetails>> findAll();
 
     void deleteContactDetails(ContactDetails contactDetails);

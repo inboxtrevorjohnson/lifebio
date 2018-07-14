@@ -19,7 +19,7 @@ public interface ContactDetailsController {
 
     ContactDetails findContactDetails(Long oID);
 
-    Set<ContactDetails> findAllContactDetails(Set<Long> oIDS);
+    Set<ContactDetails> findAllContactDetails();
 
     void deleteContactDetails(Long oID);
 

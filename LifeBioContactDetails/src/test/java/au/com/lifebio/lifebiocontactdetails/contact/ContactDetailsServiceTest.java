@@ -71,13 +71,6 @@ public class ContactDetailsServiceTest {
                 new ContactDetailsImpl(), new ContactDetailsImpl()};
         Mockito.when(contactDetailsRepository.findAll()).thenReturn(Arrays.asList(list));
 
-        /* Find All By ID */
-        asList = Arrays.stream(list).collect(Collectors.toList());
-        for(int i = 0; i < asList.size(); i++){
-            asList.get(i).setOID(oids[i]);
-        }
-        Mockito.when(contactDetailsRepository.findAllById(Arrays.stream(oids).collect(Collectors.toSet())))
-                .thenReturn(asList);
     }
 
     @Test
@@ -119,16 +112,6 @@ public class ContactDetailsServiceTest {
     @Test
     public void whenFindAll_thenAllShouldBeFound() {
         Optional<Set<ContactDetails>> optional = contactDetailsService.findAll();
-
-        /* Check */
-        assertThat(optional.isPresent());
-        assertThat(optional.get().size()).isEqualTo(5);
-    }
-
-    @Test
-    public void whenFindByAllByOID_thenOnlyContactDetailsWithOIDShouldBeFound() {
-        Optional<Set<ContactDetails>> optional = contactDetailsService.findAllContactDetailsByOID(
-                Arrays.stream(oids).collect(Collectors.toSet()));
 
         /* Check */
         assertThat(optional.isPresent());

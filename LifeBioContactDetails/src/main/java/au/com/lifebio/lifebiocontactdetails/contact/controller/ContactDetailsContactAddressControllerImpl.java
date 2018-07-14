@@ -99,7 +99,8 @@ public class ContactDetailsContactAddressControllerImpl implements ContactDetail
     }
 
     @Override
-    @DeleteMapping(value = OID_PATH_VARIABLE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = CONTACT_DETAILS_OID_PATH_VARIABLE + OID_PATH_VARIABLE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteContactDetailsContactAddress(@PathVariable Long contactDetailsOID, @PathVariable Long oID) {
         if(contactDetailsOID == null || oID == null){
             throw new IllegalArgumentException("Cannot delete contact address, a valid contact details oid and oid " +

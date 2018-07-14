@@ -2,17 +2,19 @@ package au.com.lifebio.lifebiocontactdetails.contact.controller;
 
 import au.com.lifebio.lifebiocommon.common.exception.CreationException;
 import au.com.lifebio.lifebiocommon.common.exception.ResourceNotFoundException;
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
+import au.com.lifebio.lifebiocontactdetails.contact.model.*;
 import au.com.lifebio.lifebiocontactdetails.contact.service.ContactDetailsService;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsController.CONTACT_DETAILS_URL;
 
@@ -25,6 +27,45 @@ public class ContactDetailsControllerImpl implements ContactDetailsController {
 
     @Autowired
     ContactDetailsService contactDetailsService;
+
+    /* Set up test data */
+    List<Optional<ContactDetails>> contactDetailsList = new ArrayList<>();
+
+    @PostConstruct
+    public void postConstruct(){
+        for(int i = 0; i < 10; i++){
+            ContactDetails contactDetails = new ContactDetailsImpl();
+            Optional<ContactDetails> optional = contactDetailsService.addContactDetails(contactDetails);
+        }
+        contactDetailsList.stream().forEach( contactDetails -> {
+            for(int i = 0; i < 10; i++){
+                ContactNumber contactNumber = new ContactNumberImpl();
+                contactNumber.setNumber(RandomStringUtils.randomNumeric(10));
+                contactNumber.setContactType(ContactType.BUSINESS);
+
+                ContactEmailAddress contactEmailAddress = new ContactEmailAddressImpl();
+                contactEmailAddress.setEmailAddress( RandomStringUtils.randomAlphabetic(5) + "@" + RandomStringUtils
+                        .randomAlphabetic(5) + "." + RandomStringUtils.randomAlphabetic(3));
+                contactEmailAddress.setContactType(ContactType.BUSINESS);
+
+                ContactAddress contactAddress = new ContactAddressImpl();
+                contactAddress.setLine1( RandomStringUtils.randomAlphanumeric(10));
+                contactAddress.setLine2( RandomStringUtils.randomAlphanumeric(10));
+                contactAddress.setLine3( RandomStringUtils.randomAlphanumeric(10));
+                contactAddress.setCityArea( RandomStringUtils.randomAlphanumeric(10));
+                contactAddress.setState( RandomStringUtils.randomAlphanumeric(10));
+                contactAddress.setPostalCode( RandomStringUtils.randomAlphanumeric(10));
+                contactAddress.setCountry( RandomStringUtils.randomAlphanumeric(10));
+                contactAddress.setContactType(ContactType.BUSINESS);
+
+                contactDetails.get().getContactNumbers().add((ContactNumberImpl) contactNumber);
+                contactDetails.get().getContactEmailAddresses().add((ContactEmailAddressImpl) contactEmailAddress);
+                contactDetails.get().getContactAddresses().add((ContactAddressImpl) contactAddress);
+                contactDetailsService.changeContactDetails(contactDetails.get());
+            }
+        });
+
+    }
 
     @Override
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -79,14 +120,11 @@ public class ContactDetailsControllerImpl implements ContactDetailsController {
     @Override
     @GetMapping(value = "/all", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Set<ContactDetails> findAllContactDetails(@RequestBody  Set<Long> oIDS) {
-        if(oIDS == null || oIDS.size() < 1){
-            throw new IllegalArgumentException("Cannot find contact details list, valid oids must be specified!");
-        }
-        Optional<Set<ContactDetails>> contactDetails = contactDetailsService.findAllContactDetailsByOID(oIDS);
+    public Set<ContactDetails> findAllContactDetails() {
+        Optional<Set<ContactDetails>> contactDetails = contactDetailsService.findAll();
 
         return contactDetails.orElseThrow(() -> new ResourceNotFoundException(
-                "Cannot find the contact details with the list of specified oids!"));
+                "Cannot find contact details!"));
     }
 
     @Override
