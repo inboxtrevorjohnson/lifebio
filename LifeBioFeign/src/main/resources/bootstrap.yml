@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: lifebiofeign
+  cloud:
+    config:
+      uri: http://localhost:8888
+  profiles:
+    active: default
+
+security:
+  basic:
+    enable: false
+
+management:
+  security:
+    enabled: false
+
