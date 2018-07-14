@@ -14,6 +14,7 @@ import javax.validation.constraints.NotEmpty;
 public class ServiceProviderImpl extends CommonParentImpl implements ServiceProvider  {
 
     @NotEmpty(message = "A practise number must be specified.")
+    @Column(unique = true)
     private String practiseNumber;
     @NotEmpty(message = "A service provider name must be specified.")
     @Column(unique = true)

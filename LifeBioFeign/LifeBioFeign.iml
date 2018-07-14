@@ -13,6 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="LifeBioContactDetails" />
     <orderEntry type="module" module-name="LifeBioCommon" />
+    <orderEntry type="module" module-name="LifeBioPerson" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jersey:2.0.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.0.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.0.2.RELEASE" level="project" />
