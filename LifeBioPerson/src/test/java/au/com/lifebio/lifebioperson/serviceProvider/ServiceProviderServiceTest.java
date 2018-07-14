@@ -64,9 +64,9 @@ public class ServiceProviderServiceTest {
         /* Find Like */
         Set<ServiceProvider> set = Arrays.stream(list).limit(3).collect(Collectors.toSet());
         set.forEach(serviceProvider -> serviceProvider.setServiceProviderName(like));
-        Mockito.when(serviceProviderRepository.findByServiceProviderNameLike(like)).thenReturn(set);
+        Mockito.when(serviceProviderRepository.findByServiceProviderNameIgnoreCaseContaining("%" + like + "%")).thenReturn(set);
 
-        /* Find By Identification Number */
+        /* Find By Practise Number */
         Mockito.when(serviceProviderRepository.findByPractiseNumber(given.getPractiseNumber())).thenReturn(optional);
 
     }

@@ -78,8 +78,9 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 
     @Override
     public Optional<Set<ServiceProvider>> findByServiceProviderNameLike(@NotEmpty(message = "Cannot find service " +
-            "provider with an empty surname.") String serviceProviderNameLike) {
-        return Optional.of(serviceProviderRepository.findByServiceProviderNameLike(serviceProviderNameLike));
+            "provider with an empty surname.") String serviceProviderName) {
+        return Optional.of(serviceProviderRepository.findByServiceProviderNameIgnoreCaseContaining(
+                "%" + serviceProviderName + "%"));
     }
 
     @Override

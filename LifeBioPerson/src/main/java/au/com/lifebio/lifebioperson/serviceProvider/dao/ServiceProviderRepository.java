@@ -17,5 +17,5 @@ public interface ServiceProviderRepository extends JpaRepository<ServiceProvider
 
     Optional<ServiceProvider> findByPractiseNumber(String practiseNumber);
 
-    Set<ServiceProvider> findByServiceProviderNameLike(String serviceProviderNameLike);
+    Set<ServiceProvider> findByServiceProviderNameIgnoreCaseContaining(String serviceProviderName);
 }
