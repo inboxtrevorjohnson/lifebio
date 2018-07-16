@@ -80,7 +80,7 @@ public class ContactDetailsControllerImpl implements ContactDetailsController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(OID_PATH_VARIABLE) .buildAndExpand(
                 addedContactDetails.getOID()).toUri();
 
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).header(CONTACT_DETAILS_OID, addedContactDetails.getOID().toString()).build();
     }
 
     @Override

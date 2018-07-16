@@ -1,5 +1,6 @@
 package au.com.lifebio.LifeBioFeign.serviceProvider;
 
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
 import au.com.lifebio.lifebioperson.serviceProvider.ServiceProvider;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
+import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsController.CONTACT_DETAILS_URL;
+import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactMeansController.CONTACT_DETAILS_OID_PATH_VARIABLE;
 import static au.com.lifebio.lifebioperson.serviceProvider.controller.ServiceProviderController.*;
 
 /**
@@ -27,7 +30,7 @@ public interface ServiceProviderProxy {
                 consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
         ResponseEntity<Object>  changeServiceProvider(@PathVariable(value = "oID") Long oID,
-                                                     @RequestBody ServiceProvider contactDetails);
+                                                     @RequestBody ServiceProvider serviceProvider);
 
         @GetMapping(value = SERVICE_PROVIDER_URL + OID_PATH_VARIABLE,
                 consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -54,6 +57,15 @@ public interface ServiceProviderProxy {
         @DeleteMapping(value = SERVICE_PROVIDER_URL + OID_PATH_VARIABLE,
                 consumes = MediaType.APPLICATION_JSON_VALUE)
         void deleteServiceProvider(@PathVariable(value = "oID") Long oID);
+
+        /* Contact Details */
+
+        @PostMapping(value = SERVICE_PROVIDER_URL + OID_PATH_VARIABLE + CONTACT_DETAILS_URL,
+                consumes = MediaType.APPLICATION_JSON_VALUE,
+                produces = MediaType.APPLICATION_JSON_VALUE)
+        ResponseEntity<Object> addServiceProviderContactDetails(
+                @PathVariable(value = "oID") Long oID,
+                @RequestBody ContactDetails contactDetails);
 
 }
 

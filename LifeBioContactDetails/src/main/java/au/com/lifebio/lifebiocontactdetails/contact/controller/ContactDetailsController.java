@@ -12,7 +12,7 @@ public interface ContactDetailsController {
 
     String CONTACT_DETAILS_URL = "/contactdetails";
     String OID_PATH_VARIABLE = "/{oID}";
-
+    String CONTACT_DETAILS_OID = "contactDetailsOID";
     ResponseEntity<Object> addContactDetails(ContactDetails contactDetails);
 
     ResponseEntity<Object>  changeContactDetails(Long oID, ContactDetails contactDetails);
