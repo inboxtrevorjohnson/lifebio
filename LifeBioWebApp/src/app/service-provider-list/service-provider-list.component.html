@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>Service Providers</mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let serviceProvider of serviceProviders">
+        <h3 mat-line>
+          <script>
+          </script>
+          <a mat-button [routerLink]="['/service-provider-edit', serviceProvider.oid]">
+            {{serviceProvider.serviceProviderName}}
+          </a>
+        </h3>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <button mat-fab color="primary" [routerLink]="['/service-provider-add']">Add</button>
+</mat-card>
