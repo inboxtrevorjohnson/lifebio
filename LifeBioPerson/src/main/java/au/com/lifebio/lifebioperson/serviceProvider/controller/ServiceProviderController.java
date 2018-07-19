@@ -10,9 +10,9 @@ import java.util.Set;
  */
 public interface ServiceProviderController {
 
-    String SERVICE_PROVIDER_URL = "/serviceProvider";
-    String PRACTISE_NUMBER = "/practiseNumber/{practiseNumber}";
-    String SERVICE_PROVIDER_NAME = "/serviceProviderName/{serviceProviderName}";
+    String SERVICE_PROVIDER_URL = "/serviceprovider";
+    String PRACTISE_NUMBER = "/practisenumber/{practiseNumber}";
+    String SERVICE_PROVIDER_NAME = "/serviceprovidername/{serviceProviderName}";
     String OID_PATH_VARIABLE = "/{oID}";
 
     ResponseEntity<Object> addServiceProvider(ServiceProvider serviceProvider);

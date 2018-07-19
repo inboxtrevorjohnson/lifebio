@@ -105,7 +105,7 @@ public class ServiceProviderControllerTest {
 
     @Test
     public void readSingleServiceProviderByPractiseNumber() throws Exception {
-        mockMvc.perform(get(SERVICE_PROVIDER_URL + "/practiseNumber/" + serviceProvider.getPractiseNumber())
+        mockMvc.perform(get(SERVICE_PROVIDER_URL + "/practisenumber/" + serviceProvider.getPractiseNumber())
                 .contentType(contentType))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
@@ -117,7 +117,9 @@ public class ServiceProviderControllerTest {
 
     @Test
     public void readServiceProvidersByServiceProviderNameContaining() throws Exception {
-        mockMvc.perform(get(SERVICE_PROVIDER_URL + "/serviceProviderName/" + serviceProvider
+        System.out.println("URL ============ " + SERVICE_PROVIDER_URL + "/serviceprovidername/" + serviceProvider
+                .getServiceProviderName());
+        mockMvc.perform(get(SERVICE_PROVIDER_URL + "/serviceprovidername/" + serviceProvider
                 .getServiceProviderName())
                 .contentType(contentType))
                 .andDo(MockMvcResultHandlers.print())

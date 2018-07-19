@@ -80,7 +80,8 @@ public class ContactDetailsControllerImpl implements ContactDetailsController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(OID_PATH_VARIABLE) .buildAndExpand(
                 addedContactDetails.getOID()).toUri();
 
-        return ResponseEntity.created(location).header(CONTACT_DETAILS_OID, addedContactDetails.getOID().toString()).build();
+        return ResponseEntity.created(location).header(CONTACT_DETAILS_OID, addedContactDetails.getOID().toString())
+                .build();
     }
 
     @Override
@@ -112,7 +113,6 @@ public class ContactDetailsControllerImpl implements ContactDetailsController {
             throw new IllegalArgumentException("Cannot find contact details, a valid oid must be specified!");
         }
         Optional<ContactDetails> contactDetails = contactDetailsService.findContactDetails(oID);
-
         return contactDetails.orElseThrow(() -> new ResourceNotFoundException(
                 "Cannot find the contact details with the specified oid!"));
     }
