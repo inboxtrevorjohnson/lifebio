@@ -1,5 +1,6 @@
 package au.com.lifebio.lifebioperson.person.doctor.service;
 
+import au.com.lifebio.lifebiocommon.common.exception.ConflictException;
 import au.com.lifebio.lifebiocommon.common.exception.ModificationException;
 import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.person.doctor.Doctor;
@@ -39,7 +40,7 @@ public class DoctorServiceImpl implements DoctorService {
         if(!doctor.getLastModified().equals(doctorRepository.findById(doctor.getOID()).orElseThrow(
                 () -> new ResourceNotFoundException("Cannot change doctor, cannot find doctor!") )
                 .getLastModified())){
-            throw new ModificationException("Cannot change doctor, it has been modified by someone else!");
+            throw new ConflictException("Cannot change doctor, it has been modified by someone else!");
         }
         if(doctor instanceof DoctorImpl) {
             doctor.setLastModified(LocalDateTime.now());

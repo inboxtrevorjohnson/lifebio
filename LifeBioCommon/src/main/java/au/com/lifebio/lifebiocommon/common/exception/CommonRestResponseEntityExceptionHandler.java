@@ -34,6 +34,11 @@ public class CommonRestResponseEntityExceptionHandler extends ResponseEntityExce
         return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_MODIFIED, request);
     }
 
+    @ExceptionHandler(value = { ConflictException.class })
+    protected ResponseEntity<Object> handleResourceWithConflict(RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
+
     @ExceptionHandler(value = { RemoveException.class })
     protected ResponseEntity<Object> handleResourceNotDeleted(RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_MODIFIED, request);

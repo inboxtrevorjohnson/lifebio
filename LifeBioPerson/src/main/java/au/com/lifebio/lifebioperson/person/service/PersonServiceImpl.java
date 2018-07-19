@@ -1,5 +1,6 @@
 package au.com.lifebio.lifebioperson.person.service;
 
+import au.com.lifebio.lifebiocommon.common.exception.ConflictException;
 import au.com.lifebio.lifebiocommon.common.exception.ModificationException;
 import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.person.Person;
@@ -39,7 +40,7 @@ public class PersonServiceImpl implements PersonService {
         if(!person.getLastModified().equals(personRepository.findById(person.getOID()).orElseThrow(
                 () -> new ResourceNotFoundException("Cannot change person, cannot find person!") )
                 .getLastModified())){
-            throw new ModificationException("Cannot change person, it has been modified by someone else!");
+            throw new ConflictException("Cannot change person, it has been modified by someone else!");
         }
         if(person instanceof PersonImpl) {
             person.setLastModified(LocalDateTime.now());

@@ -1,5 +1,6 @@
 package au.com.lifebio.lifebioperson.serviceProvider.service;
 
+import au.com.lifebio.lifebiocommon.common.exception.ConflictException;
 import au.com.lifebio.lifebiocommon.common.exception.ModificationException;
 import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.serviceProvider.ServiceProvider;
@@ -41,7 +42,7 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
         if(!serviceProvider.getLastModified().equals(serviceProviderRepository.findById(serviceProvider.getOID())
                 .orElseThrow(() -> new ResourceNotFoundException("Cannot change service provider, cannot find service " +
                         "provider!") ).getLastModified())){
-            throw new ModificationException("Cannot change service provider, it has been modified by someone else!");
+            throw new ConflictException("Cannot change service provider, it has been modified by someone else!");
         }
         if(serviceProvider instanceof ServiceProviderImpl) {
             serviceProvider.setLastModified(LocalDateTime.now());

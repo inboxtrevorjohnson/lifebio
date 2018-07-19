@@ -1,5 +1,6 @@
 package au.com.lifebio.lifebioperson.person.patient.service;
 
+import au.com.lifebio.lifebiocommon.common.exception.ConflictException;
 import au.com.lifebio.lifebiocommon.common.exception.ModificationException;
 import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
 import au.com.lifebio.lifebioperson.person.patient.Patient;
@@ -38,7 +39,7 @@ public class PatientServiceImpl implements PatientService {
         if(!patient.getLastModified().equals(patientRepository.findById(patient.getOID()).orElseThrow(
                 () -> new ResourceNotFoundException("Cannot change patient, cannot find patient!") )
                 .getLastModified())){
-            throw new ModificationException("Cannot change patient, it has been modified by someone else!");
+            throw new ConflictException("Cannot change patient, it has been modified by someone else!");
         }
         if(patient instanceof PatientImpl) {
             patient.setLastModified(LocalDateTime.now());
