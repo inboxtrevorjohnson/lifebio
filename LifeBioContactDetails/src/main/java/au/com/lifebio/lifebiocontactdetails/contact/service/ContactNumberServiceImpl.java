@@ -1,9 +1,6 @@
 package au.com.lifebio.lifebiocontactdetails.contact.service;
 
-import au.com.lifebio.lifebiocommon.common.exception.CreationException;
-import au.com.lifebio.lifebiocommon.common.exception.ModificationException;
-import au.com.lifebio.lifebiocommon.common.exception.RemoveException;
-import au.com.lifebio.lifebiocommon.common.exception.TypeNotSupportedException;
+import au.com.lifebio.lifebiocommon.common.exception.*;
 import au.com.lifebio.lifebiocontactdetails.contact.dao.ContactDetailsRepository;
 import au.com.lifebio.lifebiocontactdetails.contact.dao.ContactNumberRepository;
 import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
@@ -65,7 +62,7 @@ public class ContactNumberServiceImpl implements ContactNumberService {
         if(!contactNumber.getLastModified().equals(contactNumberRepository.findById(contactNumber.getOID())
                 .orElseThrow(() -> new ResourceNotFoundException("Cannot change contact number, cannot find contact " +
                         "number!")).getLastModified())){
-            throw new ModificationException("Cannot change contact number, it has been modified by someone else!");
+            throw new ConflictException("Cannot change contact number, it has been modified by someone else!");
         }
 
         if(contactNumber instanceof ContactNumberImpl) {
