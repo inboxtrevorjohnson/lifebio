@@ -1,5 +1,29 @@
-@import "~@angular/material/prebuilt-themes/purple-green.css";
-body {
- margin: 0;
- font-family: Roboto, sans-serif;
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.bottomRow {
+  margin-bottom:0px!important;
 }
+
+.leftButton {
+  padding-left:0px!important;
+  padding-right:2px!important;
+}
+
+.rightButtonRow {
+  margin-top:10px!important;
+  float:right!important;
+}
+
+.rightButtonTableRow {
+  float:right!important;
+}
+
+.buttonIcon {
+  vertical-align:middle;
+}
+
+.innerDiv {
+  width: 80%;
+  margin: 0 auto;
+}
+

@@ -1,27 +1,69 @@
-<mat-card>
-  <form #serviceProviderForm="ngForm" (ngSubmit)="save(serviceProviderForm.value)">
-    <mat-card-header>
-      <mat-card-title>
-        <h2>{{serviceProvider.serviceProviderName ? 'Edit' : 'Add'}} Service Provider </h2>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <input type="hidden" name="href" [(ngModel)]="serviceProvider.href">
-      <mat-form-field>
-        <input matInput placeholder="Service Provider Name" [(ngModel)]="serviceProvider.serviceProviderName"
-               required name="serviceProviderName" #name>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Practise Number" [(ngModel)]="serviceProvider.practiseNumber"
-               required name="practiseNumber" #name>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit"
-              [disabled]="!serviceProviderForm.form.valid">Save</button>
-      <button mat-raised-button color="secondary" (click)="remove(serviceProvider.href)"
-              *ngIf="serviceProvider.href" type="button">Delete</button>
-      <a mat-button routerLink="/service-provider-list">Cancel</a>
-    </mat-card-actions>
-  </form>
-</mat-card>
+<div class="container">
+    <form
+      [formGroup]="serviceProviderForm"
+      (ngSubmit)="saveServiceProvider(serviceProviderForm.value)">
+
+
+      <div class="card text-center" >
+        <div class="card-header">
+         <h5 class="card-title">{{title}}</h5>
+        </div>
+        <div class="card-body">
+          <!-- Row 1 -->
+          <div class="form-group row">
+
+            <label
+              class="col-sm-4 col-form-label text-right"
+              for="practiseNumber">Practise Number:</label>
+            <div class="col-sm-8">
+              <input type="text"
+                     class="form-control"
+                     id="practiseNumber"
+                     formControlName="practiseNumber"
+                     required name="practiseNumber">
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="form-group row bottomRow">
+
+            <label
+              class="col-sm-4 col-form-label text-right bottomRow"
+              for="practiseNumber">Provider Name:</label>
+            <div class="col-sm-8 ">
+              <input type="text"
+                     class="form-control"
+                     id="serviceProviderName"
+                     formControlName="serviceProviderName"
+                     required name="serviceProviderName">
+            </div>
+          </div>
+
+          <div class="rightButtonRow">
+            <span class="leftButton">
+               <button type="submit"
+                       class="btn btn-outline-success"
+                       [disabled]="!serviceProviderForm.valid">
+                 <span>Save</span>
+                 <mat-icon class="buttonIcon">done</mat-icon>
+               </button>
+
+            </span>
+            <span class="leftButton">
+               <button type="button"
+                       class="btn btn-outline-danger"
+                       routerLink="/service-provider-list">
+                 <span>Cancel</span>
+                 <mat-icon class="buttonIcon">clear</mat-icon>
+               </button>
+            </span>
+            <!--/div -->
+          </div>
+        <!-- Card Body -->
+        </div>
+      <!-- Card -->
+      </div>
+      <!-- Outer Div -->
+
+    </form>
+</div>

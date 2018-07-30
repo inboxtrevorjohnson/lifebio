@@ -1,17 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { ServiceProviderService } from './shared/service-provider/service-provider.service';
 import { HttpClientModule } from '@angular/common/http';
 
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ServiceProviderListComponent } from './service-provider-list/service-provider-list.component';
+import { AppBootstrapModule } from './app-bootstrap/app-bootstrap.module';
+import { BootstrapAlertModule } from 'ngx-bootstrap-alert';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { MatIconModule } from '@angular/material';
 
-import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceProviderListComponent } from './service-provider-list/service-provider-list.component';
 import { ServiceProviderEditComponent } from './service-provider-edit/service-provider-edit.component';
+import {CustomErrorHandler} from './shared/custom-error-handler';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/service-provider-list', pathMatch: 'full' },
@@ -36,18 +39,20 @@ const appRoutes: Routes = [
     ServiceProviderEditComponent
   ],
   imports: [
+    AppBootstrapModule,
+    BootstrapAlertModule,
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatInputModule,
-    MatListModule,
-    MatToolbarModule,
     FormsModule,
+    MatIconModule,
+    ModalModule.forRoot(),
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ServiceProviderService],
+  providers: [
+    CustomErrorHandler,
+    ServiceProviderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

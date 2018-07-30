@@ -36,7 +36,8 @@ public class FeignServiceProviderController {
                 return serviceProviderProxyService.addServiceProvider(serviceProvider);
         }
 
-        @PutMapping(value = SERVICE_PROVIDER_URL + OID_PATH_VARIABLE, consumes = MediaType.APPLICATION_JSON_VALUE,
+        @PutMapping(value = SERVICE_PROVIDER_URL + OID_PATH_VARIABLE,
+                consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<Object> changeServiceProvider(@PathVariable(value = "oID") Long oID,
                                                            @RequestBody ServiceProvider serviceProvider) {

@@ -1,36 +1,53 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import {ServiceProvider} from './ServiceProvider';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class ServiceProviderService {
 
-  public API = '//localhost:8084/lifeBioUI';
-  public SERVICE_PROVIDER_API = this.API + '/dashboard/serviceprovider';
+  private API = '//localhost:8084/lifeBioUI';
+  private SERVICE_PROVIDER_API = this.API + '/dashboard/serviceprovider';
   private headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+  private serviceProvider: ServiceProvider;
 
   constructor(private http: HttpClient) { }
 
-  findAllServiceProviders(): Observable<any> {
-      return this.http.get(this.SERVICE_PROVIDER_API + '/all', {headers: this.headers});
-    }
+  findAllServiceProviders(): Observable<ServiceProvider[]> {
+    return this.http.get<ServiceProvider[]>(this.SERVICE_PROVIDER_API + '/all', {headers: this.headers})
+      .catch((error: any) => {
+        return Observable.throw(error);
+      });
 
-  findServiceProvider(oid: Number) {
-    return this.http.get(this.SERVICE_PROVIDER_API + '/' + oid, {headers: this.headers});
   }
 
-  saveServiceProvider(serviceProvider: any): Observable<any> {
-    let result: Observable<Object>;
-    if (serviceProvider['href']) {
-      result = this.http.put(serviceProvider.href, serviceProvider);
-    } else {
-      result = this.http.post(this.SERVICE_PROVIDER_API, serviceProvider);
-    }
-    return result;
+  findServiceProvider(oid: Number): Observable<ServiceProvider> {
+    const url = `${this.SERVICE_PROVIDER_API}/${oid}`;
+    return this.http.get<ServiceProvider>(url, {headers: this.headers});
   }
 
-  removeServiceProvider(href: string) {
-    return this.http.delete(href);
+  changeServiceProvider(serviceProvider: ServiceProvider): Observable<ServiceProvider> {
+    return this.http.put<ServiceProvider>(this.SERVICE_PROVIDER_API + '/' + serviceProvider.oid, serviceProvider,
+      {headers: this.headers});
+  }
+
+  addServiceProvider(serviceProvider: ServiceProvider): Observable<ServiceProvider> {
+    return this.http.post<ServiceProvider>(this.SERVICE_PROVIDER_API, serviceProvider, {headers: this.headers}).map(response => {
+      console.log('ADDING SERVICE PROVIDER');
+        return response;
+    })
+    .catch((error: Response) => Observable.throw(error));
+  }
+
+
+  removeServiceProvider(serviceProvider: ServiceProvider) {
+    return this.http.delete(this.SERVICE_PROVIDER_API + '/' + serviceProvider.oid, {headers: this.headers});
+  }
+
+  goToList(router: Router) {
+    return router.navigate(['/service-provider-list']);
   }
 
 }

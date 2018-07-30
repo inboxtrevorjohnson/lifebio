@@ -42,7 +42,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = LifeBioPersonApplication.class)
 @WebAppConfiguration
-@Profile("test")
 public class ServiceProviderControllerTest {
 
 
@@ -117,8 +116,6 @@ public class ServiceProviderControllerTest {
 
     @Test
     public void readServiceProvidersByServiceProviderNameContaining() throws Exception {
-        System.out.println("URL ============ " + SERVICE_PROVIDER_URL + "/serviceprovidername/" + serviceProvider
-                .getServiceProviderName());
         mockMvc.perform(get(SERVICE_PROVIDER_URL + "/serviceprovidername/" + serviceProvider
                 .getServiceProviderName())
                 .contentType(contentType))

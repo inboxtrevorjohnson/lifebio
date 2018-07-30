@@ -1,17 +1,84 @@
-<mat-card>
-  <mat-card-header>Service Providers</mat-card-header>
-  <mat-card-content>
-    <mat-list>
-      <mat-list-item *ngFor="let serviceProvider of serviceProviders">
-        <h3 mat-line>
-          <script>
-          </script>
-          <a mat-button [routerLink]="['/service-provider-edit', serviceProvider.oid]">
-            {{serviceProvider.serviceProviderName}}
-          </a>
-        </h3>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
-  <button mat-fab color="primary" [routerLink]="['/service-provider-add']">Add</button>
-</mat-card>
+<div class="innerDiv">
+  <div class="card text-center">
+      <div class="card-header">
+        <h5>Service Providers</h5>
+      </div>
+      <table class="table table-sm">
+        <thead>
+        <tr>
+          <th scope="col"><p class="text-left align-middle">Practise No.</p></th>
+          <th scope="col"><p class="text-left align-middle">Provider</p></th>
+          <th scope="col"><p class="text-center align-middle">Contacts</p></th>
+          <th scope="col"><p class="text-center align-middle">Edit</p></th>
+          <th scope="col"><p class="text-center align-middle">Delete</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let serviceProvider of serviceProviders">
+          <td>
+            <p class="text-left">{{serviceProvider.practiseNumber}}</p>
+          </td>
+          <td>
+            <p class="text-left">{{serviceProvider.serviceProviderName}}</p>
+          </td>
+          <td>
+            <a class="card-link text-info"
+              [routerLink]="['/service-provider-edit', serviceProvider.oid]" >
+              <mat-icon class="buttonIcon">contacts</mat-icon>
+            </a>
+          </td>
+          <td>
+            <a class="card-link text-warning"
+               [routerLink]="['/service-provider-edit', serviceProvider.oid]" >
+              <mat-icon class="buttonIcon">edit</mat-icon>
+            </a>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-outline-light"
+              href=""
+              (click)="openDeleteModal(serviceProvider, deleteModal)">
+              <mat-icon class="buttonIcon text-danger">delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="card-footer p-3">
+        <div class="rightButtonTableRow">
+          <button type="button"
+                  class="btn btn-outline-secondary"
+                  [routerLink]="['/service-provider-add']">
+            <mat-icon class="buttonIcon">add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <!-- Card -->
+    </div>
+</div>
+<ng-template #deleteModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Service Provider</h4>
+    <button type="button" class="close pull-right"
+            aria-label="Close" (click)="deleteModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete {{serviceProvider.serviceProviderName}}?
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+            class="btn btn-outline-success"
+            (click)="remove(serviceProvider)">
+      <mat-icon class="buttonIcon">check</mat-icon>
+    </button>
+    <button type="button"
+            class="btn btn-outline-danger"
+            (click)="deleteModalRef.hide()">
+      <mat-icon class="buttonIcon">clear</mat-icon>
+    </button>
+  </div>
+</ng-template>
+
