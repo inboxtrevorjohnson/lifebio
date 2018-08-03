@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServiceProviderService} from '../shared/service-provider/service-provider.service';
-import {ServiceProvider} from '../shared/service-provider/ServiceProvider';
+import { ServiceProviderService} from '../../shared/service-provider/service-provider.service';
+import {ServiceProvider} from '../../shared/service-provider/ServiceProvider';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BootstrapAlert, BootstrapAlertService} from 'ngx-bootstrap-alert';
-import {AppConstants} from '../shared/app-constants';
-import {CustomErrorHandler} from '../shared/custom-error-handler';
+import {AppConstants} from '../../shared/app-constants';
+import {CustomErrorHandler} from '../../shared/custom-error-handler';
 import {HttpErrorResponse} from '@angular/common/http';
 
   @Component({
@@ -89,7 +89,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 
   private showErrorModal(error: HttpErrorResponse) {
     const alert = new BootstrapAlert(this.customErrorHandler.showError(error), 'alert-danger');
-    alert.timeoutInMiliSeconds = AppConstants.errorrAlertTimeout;
+    alert.timeoutInMiliSeconds = AppConstants.ERROR_ALERT_TIMEOUT;
     this.bootstrapAlertService.alert(alert);
   }
 }

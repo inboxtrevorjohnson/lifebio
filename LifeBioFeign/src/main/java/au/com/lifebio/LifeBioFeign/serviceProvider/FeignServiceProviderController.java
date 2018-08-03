@@ -2,6 +2,7 @@ package au.com.lifebio.LifeBioFeign.serviceProvider;
 
 import au.com.lifebio.LifeBioFeign.contact.ContactDetailsProxy;
 import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetailsImpl;
 import au.com.lifebio.lifebioperson.serviceProvider.ServiceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -33,6 +34,15 @@ public class FeignServiceProviderController {
                 consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<Object> addServiceProvider(@RequestBody ServiceProvider serviceProvider) {
+                /* Add contact details for new service provider */
+                ContactDetails contactDetails = new ContactDetailsImpl();
+                ResponseEntity<Object> contactDetailsResponseEntity = contactDetailsProxyService
+                        .addContactDetails(contactDetails);
+
+                /* Set contact details on new service provider */
+                serviceProvider.setContactDetails(Long.parseLong(contactDetailsResponseEntity.getHeaders().getFirst(
+                        CONTACT_DETAILS_OID)));
+
                 return serviceProviderProxyService.addServiceProvider(serviceProvider);
         }
 

@@ -6,3 +6,13 @@ spring:
       uri: http://localhost:8888
   profiles:
     active: default
+
+  datasource:
+    url: jdbc:postgresql://192.168.0.199:5432/LifeBio
+    username: crazymonkey
+    password: J@ck_@55
+
+  jpa:
+    show-sql: true
+    hibernate:
+        ddl-auto: create-drop

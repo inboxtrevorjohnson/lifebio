@@ -1,6 +1,7 @@
-export class ServiceProvider {
-  oid: number
+import {Common} from '../Common';
+
+export class ServiceProvider extends Common {
   practiseNumber: string;
   serviceProviderName: string;
-  lastModified: Date;
+  contactDetailsOID: number;
 }

@@ -22,11 +22,9 @@ export class CustomErrorHandler implements ErrorHandler {
 
 
   public handleError(error: HttpErrorResponse) {
-    console.log('Handling Error = ' + error);
     this.router = this.injector.get(Router);
 
     const httpErrorCode = error.error.statusCode;
-    console.log('Error Code = ' + httpErrorCode);
     switch (httpErrorCode) {
       case UNAUTHORIZED: {
         this.router.navigateByUrl('/login');

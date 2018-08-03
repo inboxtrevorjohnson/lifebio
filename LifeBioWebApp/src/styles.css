@@ -1,4 +1,14 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.mainJumbotron {
+  paddin:32px!important;
+ margin:0px!important;
+}
+
+button:focus {
+  outline: none;
+}
 
 .bottomRow {
   margin-bottom:0px!important;
@@ -25,5 +35,10 @@
 .innerDiv {
   width: 80%;
   margin: 0 auto;
+}
+
+.menuBar {
+  padding-top:10px!important;
+  padding-bottom:10px!important;
 }
 

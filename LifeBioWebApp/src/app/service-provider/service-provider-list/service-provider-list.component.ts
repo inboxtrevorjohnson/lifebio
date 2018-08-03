@@ -1,10 +1,10 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {ServiceProviderService } from '../shared/service-provider/service-provider.service';
-import {ServiceProvider} from '../shared/service-provider/ServiceProvider';
+import {ServiceProviderService } from '../../shared/service-provider/service-provider.service';
+import {ServiceProvider} from '../../shared/service-provider/ServiceProvider';
 import {BootstrapAlertService, BootstrapAlert } from 'ngx-bootstrap-alert';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {AppConstants} from '../shared/app-constants';
-import {CustomErrorHandler} from '../shared/custom-error-handler';
+import {AppConstants} from '../../shared/app-constants';
+import {CustomErrorHandler} from '../../shared/custom-error-handler';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
@@ -17,6 +17,7 @@ export class ServiceProviderListComponent implements OnInit {
   public deleteModalRef: BsModalRef;
   serviceProviders: Array<ServiceProvider>;
   private _serviceProvider: ServiceProvider;
+  parentObject = AppConstants.SERVICE_PROVIDER;
 
 
   constructor(private customErrorHandler: CustomErrorHandler,
@@ -49,16 +50,13 @@ export class ServiceProviderListComponent implements OnInit {
   }
 
   public openDeleteModal(serviceProvider: ServiceProvider, template: TemplateRef<any>) {
-    console.log('1');
     this._serviceProvider = serviceProvider;
-    console.log('2');
     this.deleteModalRef = this.modalService.show(template);
-    console.log('3');
   }
 
   private showErrorModal(error: HttpErrorResponse) {
     const alert = new BootstrapAlert(this.customErrorHandler.showError(error), 'alert-danger');
-    alert.timeoutInMiliSeconds = AppConstants.errorrAlertTimeout;
+    alert.timeoutInMiliSeconds = AppConstants.ERROR_ALERT_TIMEOUT;
     this.bootstrapAlertService.alert(alert);
   }
 }
