@@ -1,0 +1,14 @@
+FROM alpine-java:base
+
+MAINTAINER inboxtrevorjohnson@gmail.com
+
+RUN apk --no-cache add netcat-openbsd
+
+COPY resources/LifeBioFeign-1.0-exec.jar /opt/spring-cloud/lib/
+COPY resources/lifebio-feign-entrypoint.sh /opt/spring-cloud/bin/
+
+ENTRYPOINT ["/usr/bin/java"]
+
+RUN chmod 755 /opt/spring-cloud/bin/lifebio-feign-entrypoint.sh
+
+EXPOSE 4001

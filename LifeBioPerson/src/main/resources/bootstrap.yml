@@ -3,12 +3,12 @@ spring:
     name: lifebioperson
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://192.168.99.100:8888
   profiles:
     active: default
 
   datasource:
-    url: jdbc:postgresql://192.168.0.199:5432/LifeBio
+    url: jdbc:postgresql://192.168.99.100:5432/LifeBio
     username: crazymonkey
     password: J@ck_@55
 

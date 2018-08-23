@@ -1,0 +1,112 @@
+version: '2'
+services:
+
+    database-server:
+        container_name: lifebio-database
+        build:
+            context: ./databaseServer
+            dockerfile: DockerFile.database
+        image: inboxtrevorjohnson/postgres-lifebio:1.0
+        expose:
+            - 5432
+        ports:
+            - 5432:5432
+        logging:
+            driver: json-file
+
+    eureka-server:
+        container_name: lifebio-eureka-server
+        build:
+            context: ./eurekaServer
+            dockerfile: DockerFile.eurekaServer
+        image: eureka-server:latest
+        expose:
+            - 8761
+        ports:
+            - 8761:8761
+        logging:
+            driver: json-file
+
+    config-server:
+        container_name: lifebio-config-server
+        build:
+            context: ./lifeBioConfigServer
+            dockerfile: DockerFile.lifeBioConfigServer
+        image: lifebio-config-server:latest
+        entrypoint: /opt/spring-cloud/bin/lifebio-config-server-entrypoint.sh
+        expose:
+            - 8888
+        ports:
+            - 8888:8888
+        depends_on:
+            - eureka-server
+        logging:
+            driver: json-file
+
+    contact-details:
+        container_name: lifebio-contact-details
+        build:
+            context: ./lifeBioContactDetails
+            dockerfile: DockerFile.lifeBioContactDetails
+        image: lifebio-contact-details:latest
+        entrypoint: /opt/spring-cloud/bin/lifebio-contact-details-entrypoint.sh
+        expose:
+            - 4002
+        ports:
+            - 4002:4002
+        depends_on:
+            - eureka-server
+            - config-server
+            - database-server
+        logging:
+            driver: json-file
+
+    person:
+        container_name: lifebio-person
+        build:
+            context: ./lifeBioPerson
+            dockerfile: DockerFile.lifeBioPerson
+        image: lifebio-person:latest
+        entrypoint: /opt/spring-cloud/bin/lifebio-person-entrypoint.sh
+        expose:
+            - 4003
+        ports:
+            - 4003:4003
+        depends_on:
+            - eureka-server
+            - config-server
+            - database-server
+        logging:
+            driver: json-file
+
+    feign:
+        container_name: lifebio-feign
+        build:
+            context: ./lifeBioFeign
+            dockerfile: DockerFile.lifeBioFeign
+        image: lifebio-feign:latest
+        entrypoint: /opt/spring-cloud/bin/lifebio-feign-entrypoint.sh
+        expose:
+            - 4001
+        ports:
+            - 4001:4001
+        depends_on:
+            - config-server
+        logging:
+            driver: json-file
+
+    zuul:
+        container_name: lifebio-zuul
+        build:
+            context: ./lifeBioZuul
+            dockerfile: DockerFile.lifeBioZuul
+        image: lifebio-zuul:latest
+        entrypoint: /opt/spring-cloud/bin/lifebio-zuul-entrypoint.sh
+        expose:
+            - 8084
+        ports:
+            - 8084:8084
+        depends_on:
+            - feign
+        logging:
+            driver: json-file

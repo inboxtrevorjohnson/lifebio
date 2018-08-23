@@ -1,0 +1,14 @@
+FROM alpine-java:base
+
+MAINTAINER inboxtrevorjohnson@gmail.com
+
+RUN apk --no-cache add netcat-openbsd
+
+COPY resources/LifeBioPerson-1.0-exec.jar /opt/spring-cloud/lib/
+COPY resources/lifebio-person-entrypoint.sh /opt/spring-cloud/bin/
+
+ENTRYPOINT ["/usr/bin/java"]
+
+RUN chmod 755 /opt/spring-cloud/bin/lifebio-person-entrypoint.sh
+
+EXPOSE 4003

@@ -1,0 +1,14 @@
+FROM alpine-java:base
+
+MAINTAINER inboxtrevorjohnson@gmail.com
+
+RUN apk --no-cache add netcat-openbsd
+
+COPY resources/LifeBioConfig-1.0-exec.jar /opt/spring-cloud/lib/
+COPY resources/lifebio-config-server-entrypoint.sh /opt/spring-cloud/bin/
+
+ENTRYPOINT ["/usr/bin/java"]
+
+RUN chmod 755 /opt/spring-cloud/bin/lifebio-config-server-entrypoint.sh
+
+EXPOSE 8888

@@ -1,0 +1,11 @@
+FROM alpine-java:base
+
+MAINTAINER inboxtrevorjohnson@gmail.com
+
+COPY resources/EurekaServer-1.0-exec.jar /opt/spring-cloud/lib/
+
+ENTRYPOINT ["/usr/bin/java"]
+
+CMD ["-jar", "/opt/spring-cloud/lib/EurekaServer-1.0-exec.jar"]
+
+EXPOSE 8761
