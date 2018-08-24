@@ -37,6 +37,10 @@ button:focus {
   margin: 0 auto;
 }
 
+.childTabDiv {
+  margin:30px!important;
+}
+
 .menuBar {
   padding-top:10px!important;
   padding-bottom:10px!important;

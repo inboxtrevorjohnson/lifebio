@@ -137,4 +137,11 @@ public class ContactDetailsControllerImpl implements ContactDetailsController {
                 () -> new ResourceNotFoundException(
                         "Cannot delete the contact details with the oid of specified!")));
     }
+
+    @Override
+    @GetMapping(value = CONTACT_TYPES_URL, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Set<ContactType> findAllContactTypes() {
+        return Arrays.stream(ContactType.values()).collect(Collectors.toSet());
+    }
 }

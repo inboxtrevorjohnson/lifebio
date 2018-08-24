@@ -1,9 +1,6 @@
 package au.com.lifebio.LifeBioFeign.contact;
 
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactAddress;
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactEmailAddress;
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumber;
+import au.com.lifebio.lifebiocontactdetails.contact.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.MediaType;
@@ -12,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
+import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsController.CONTACT_TYPES_URL;
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsController.OID_PATH_VARIABLE;
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactMeansController.CONTACT_DETAILS_OID_PATH_VARIABLE;
 
@@ -56,6 +54,11 @@ public class FeignContactDetailsController {
                 return proxyService.findAllContactDetails();
         }
 
+        @GetMapping(value = CONTACT_DETAILS_URL + CONTACT_TYPES_URL, consumes = MediaType.APPLICATION_JSON_VALUE,
+                produces = MediaType.APPLICATION_JSON_VALUE)
+        public Set<ContactType> findAllContactTypes() {
+                return proxyService.findAllContactTypes();
+        }
 
         @DeleteMapping(value = CONTACT_DETAILS_URL + OID_PATH_VARIABLE, consumes = MediaType.APPLICATION_JSON_VALUE)
         public void deleteContactDetails(@PathVariable(value = "oID") Long oID) {

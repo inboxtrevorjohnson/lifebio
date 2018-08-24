@@ -21,13 +21,30 @@ import { ServiceProviderService } from './shared/service-provider/service-provid
 import { ServiceProviderListComponent } from './service-provider/service-provider-list/service-provider-list.component';
 import { ServiceProviderEditComponent } from './service-provider/service-provider-edit/service-provider-edit.component';
 import {ContactDetailsService} from './shared/contact-details/contact-details.service';
-import {AppConstants} from './shared/app-constants';
+import { ContactNumberListComponent } from './contact-details/contact-number-list/contact-number-list.component';
+import { ContactNumberEditComponent } from './contact-details/contact-number-edit/contact-number-edit.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/service-provider-list', pathMatch: 'full' },
   {
-    path: 'contact-details/:parentObject/:parentOID/:oid',
+    path: '',
+    redirectTo: '/service-provider-list',
+    pathMatch: 'full'
+  },
+  {
+    path: 'contact-details/:parentObjectType/:parentOID/:contactDetailsOID',
     component: ContactDetailsComponent
+  },
+  {
+    path: 'contact-numbers-list',
+    component: ContactNumberListComponent
+  },
+  {
+    path: 'contact-number-add',
+    component: ContactNumberEditComponent
+  },
+  {
+    path: 'contact-number-edit/:oid',
+    component: ContactNumberEditComponent
   },
   {
     path: 'service-provider-list',
@@ -49,7 +66,9 @@ const appRoutes: Routes = [
     ServiceProviderListComponent,
     ServiceProviderEditComponent,
     ContactDetailsComponent,
-    NavigationMenuComponent
+    NavigationMenuComponent,
+    ContactNumberListComponent,
+    ContactNumberEditComponent
   ],
   imports: [
     AppBootstrapModule,

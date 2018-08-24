@@ -1,0 +1,66 @@
+<div class="childTabDiv">
+  <div class="card text-center">
+    <table class="table table-sm">
+
+      <tbody>
+      <tr *ngFor="let contactNumber of contactNumbers">
+        <td>
+          <p class="text-left">{{contactNumber.contactType}}</p>
+        </td>
+        <td>
+          <p class="text-left">{{contactNumber.number}}</p>
+        </td>
+        <td>
+          <a class="card-link text-warning"
+             [routerLink]="['/contact-number-edit', contactNumber.oid]" >
+            <mat-icon class="buttonIcon">edit</mat-icon>
+          </a>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            href=""
+            (click)="openDeleteModal(contactNumber, deleteModal)">
+            <mat-icon class="buttonIcon text-danger">delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="card-footer p-3">
+      <div class="rightButtonTableRow">
+        <button type="button"
+                class="btn btn-outline-secondary"
+                [routerLink]="['/contact-number-add']">
+          <mat-icon class="buttonIcon">add</mat-icon>
+        </button>
+      </div>
+    </div>
+    <!-- Card -->
+  </div>
+</div>
+<ng-template #deleteModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Contact Number</h4>
+    <button type="button" class="close pull-right"
+            aria-label="Close" (click)="deleteModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete the selected contact number?
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+            class="btn btn-outline-success"
+            (click)="remove(contactNumber)">
+      <mat-icon class="buttonIcon">check</mat-icon>
+    </button>
+    <button type="button"
+            class="btn btn-outline-danger"
+            (click)="deleteModalRef.hide()">
+      <mat-icon class="buttonIcon">clear</mat-icon>
+    </button>
+  </div>
+</ng-template>

@@ -2,10 +2,8 @@ package au.com.lifebio.lifebiocontactdetails.contact.controller;
 
 import au.com.lifebio.lifebiocommon.common.exception.CreationException;
 import au.com.lifebio.lifebiocommon.common.exception.ResourceNotFoundException;
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
 import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumber;
 import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumberImpl;
-import au.com.lifebio.lifebiocontactdetails.contact.service.ContactDetailsService;
 import au.com.lifebio.lifebiocontactdetails.contact.service.ContactNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,11 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsContactNumberController.CONTACT_NUMBER_URL;
 

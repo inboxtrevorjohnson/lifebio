@@ -1,6 +1,7 @@
 package au.com.lifebio.lifebiocontactdetails.contact.controller;
 
 import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
+import au.com.lifebio.lifebiocontactdetails.contact.model.ContactType;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.Set;
 public interface ContactDetailsController {
 
     String CONTACT_DETAILS_URL = "/contactdetails";
+    String CONTACT_TYPES_URL = "/contacttypes";
     String OID_PATH_VARIABLE = "/{oID}";
     String CONTACT_DETAILS_OID = "contactDetailsOID";
     ResponseEntity<Object> addContactDetails(ContactDetails contactDetails);
@@ -22,5 +24,7 @@ public interface ContactDetailsController {
     Set<ContactDetails> findAllContactDetails();
 
     void deleteContactDetails(Long oID);
+
+    Set<ContactType> findAllContactTypes();
 
 }

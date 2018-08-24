@@ -1,9 +1,6 @@
 package au.com.lifebio.LifeBioFeign.contact;
 
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactAddress;
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactEmailAddress;
-import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumber;
+import au.com.lifebio.lifebiocontactdetails.contact.model.*;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -16,6 +13,7 @@ import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDet
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsContactEmailAddressController.CONTACT_EMAIL_ADDRESS_URL;
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsContactNumberController.CONTACT_NUMBER_URL;
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsController.CONTACT_DETAILS_URL;
+import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsController.CONTACT_TYPES_URL;
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactDetailsController.OID_PATH_VARIABLE;
 import static au.com.lifebio.lifebiocontactdetails.contact.controller.ContactMeansController.CONTACT_DETAILS_OID_PATH_VARIABLE;
 
@@ -50,6 +48,11 @@ public interface ContactDetailsProxy {
         @DeleteMapping(value = CONTACT_DETAILS_URL + OID_PATH_VARIABLE,
                 consumes = MediaType.APPLICATION_JSON_VALUE)
         void deleteContactDetails(@PathVariable(value = "oID") Long oID);
+
+        @GetMapping(value = CONTACT_DETAILS_URL + CONTACT_TYPES_URL,
+                consumes = MediaType.APPLICATION_JSON_VALUE,
+                produces = MediaType.APPLICATION_JSON_VALUE)
+        Set<ContactType> findAllContactTypes();
 
         /* Contact Number API */
 

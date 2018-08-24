@@ -1,0 +1,70 @@
+<div class="container">
+  <form
+    [formGroup]="contactNumberForm"
+    (ngSubmit)="saveContactNumber(contactNumberForm.value)">
+
+
+    <div class="card text-center" >
+      <div class="card-header">
+        <h5 class="card-title">{{title}}</h5>
+      </div>
+      <div class="card-body">
+        <!-- Row 1 -->
+        <div class="form-group row">
+
+          <label
+            class="col-sm-4 col-form-label text-right"
+            for="contactType">Contact Type:</label>
+          <div class="col-sm-8">
+            <select class="form-control"
+                    id="contactType"
+                    formControlName="contactType"
+                    name="contactType">
+              <option *ngFor="let contactType of contactTypes">{{contactType.toString()}} </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-group row bottomRow">
+
+          <label
+            class="col-sm-4 col-form-label text-right bottomRow"
+            for="number">Number:</label>
+          <div class="col-sm-8 ">
+            <input type="text"
+                   class="form-control"
+                   id="number"
+                   formControlName="number"
+                   required name="number">
+          </div>
+        </div>
+
+        <div class="rightButtonRow">
+            <span class="leftButton">
+               <button type="submit"
+                       class="btn btn-outline-success"
+                       [disabled]="!contactNumberForm.valid">
+                 <span>Save</span>
+                 <mat-icon class="buttonIcon">done</mat-icon>
+               </button>
+
+            </span>
+          <span class="leftButton">
+               <button type="button"
+                       class="btn btn-outline-danger"
+                       routerLink="{{parentURL}}">
+                 <span>Cancel</span>
+                 <mat-icon class="buttonIcon">clear</mat-icon>
+               </button>
+            </span>
+          <!--/div -->
+        </div>
+        <!-- Card Body -->
+      </div>
+      <!-- Card -->
+    </div>
+    <!-- Outer Div -->
+
+  </form>
+</div>

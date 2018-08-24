@@ -7,7 +7,7 @@ export class ContactDetails extends Common {
 }
 
 export class ContactMeans extends Common {
-  contactType: string;
+  contactType: ContactType;
 }
 
 export class ContactAddress extends ContactMeans {
@@ -27,3 +27,11 @@ export class ContactEmailAddress extends ContactMeans {
 export class ContactNumber extends ContactMeans {
   number: string;
 }
+
+export enum ContactType {
+  EMPTY = '',
+  PERSONAL = 'Personal',
+  BUSINESS = 'Business',
+  RESIDENTIAL = 'Residential',
+}
+
