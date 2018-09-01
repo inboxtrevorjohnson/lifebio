@@ -1,4 +1,4 @@
-package au.com.lifebio.LifeBioFeign.contact;
+package au.com.lifebio.LifeBioAPIGateway.feign.contact;
 
 import au.com.lifebio.lifebiocontactdetails.contact.model.*;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
