@@ -1,0 +1,7 @@
+au\com\lifebio\LifeBioAPIGateway\feign\serviceProvider\ServiceProviderProxy.class
+au\com\lifebio\LifeBioAPIGateway\feign\exception\FeignErrorDecoder.class
+au\com\lifebio\LifeBioAPIGateway\LifeBioAPIGatewayApplication.class
+au\com\lifebio\LifeBioAPIGateway\feign\contact\ContactDetailsProxy.class
+au\com\lifebio\LifeBioAPIGateway\feign\serviceProvider\FeignServiceProviderController.class
+au\com\lifebio\LifeBioAPIGateway\ClientCredentialsConfiguration.class
+au\com\lifebio\LifeBioAPIGateway\feign\contact\FeignContactDetailsController.class

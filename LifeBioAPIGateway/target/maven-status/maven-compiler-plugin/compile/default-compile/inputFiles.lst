@@ -1,0 +1,7 @@
+C:\Development\Software\LifeBio\LifeBioAPIGateway\src\main\java\au\com\lifebio\LifeBioAPIGateway\ClientCredentialsConfiguration.java
+C:\Development\Software\LifeBio\LifeBioAPIGateway\src\main\java\au\com\lifebio\LifeBioAPIGateway\feign\exception\FeignErrorDecoder.java
+C:\Development\Software\LifeBio\LifeBioAPIGateway\src\main\java\au\com\lifebio\LifeBioAPIGateway\feign\serviceProvider\FeignServiceProviderController.java
+C:\Development\Software\LifeBio\LifeBioAPIGateway\src\main\java\au\com\lifebio\LifeBioAPIGateway\feign\serviceProvider\ServiceProviderProxy.java
+C:\Development\Software\LifeBio\LifeBioAPIGateway\src\main\java\au\com\lifebio\LifeBioAPIGateway\LifeBioAPIGatewayApplication.java
+C:\Development\Software\LifeBio\LifeBioAPIGateway\src\main\java\au\com\lifebio\LifeBioAPIGateway\feign\contact\ContactDetailsProxy.java
+C:\Development\Software\LifeBio\LifeBioAPIGateway\src\main\java\au\com\lifebio\LifeBioAPIGateway\feign\contact\FeignContactDetailsController.java
