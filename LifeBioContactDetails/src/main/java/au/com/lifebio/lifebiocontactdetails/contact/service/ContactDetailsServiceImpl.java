@@ -9,6 +9,7 @@ import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumber;
 import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumberImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ public class ContactDetailsServiceImpl implements ContactDetailsService {
     private ContactDetailsRepository contactDetailsRepository;
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_CREATE')")
     public Optional<ContactDetails> addContactDetails(@NotNull(message = "Cannot add null contact details.")
                                                                   ContactDetails contactDetails) {
         contactDetails.setLastModified(LocalDateTime.now());
@@ -36,6 +38,7 @@ public class ContactDetailsServiceImpl implements ContactDetailsService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_UPDATE')")
     public Optional<ContactDetails> changeContactDetails(@NotNull(message = "Cannot change null contact details.")
                                                                      ContactDetails contactDetails) {
         if(contactDetails.getOID() == null){
@@ -55,6 +58,7 @@ public class ContactDetailsServiceImpl implements ContactDetailsService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_READ')")
     public Optional<ContactDetails> findContactDetails(@NotNull(message = "Cannot find contact details with a null " +
             "OID.") Long oID) {
         Optional<ContactDetails> optional = Optional.of(contactDetailsRepository.findById(oID).orElseThrow(
@@ -64,11 +68,13 @@ public class ContactDetailsServiceImpl implements ContactDetailsService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_READ')")
     public Optional<Set<ContactDetails>> findAll() {
         return Optional.of(new HashSet<ContactDetails>(contactDetailsRepository.findAll()));
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_DELETE')")
     public void deleteContactDetails(@NotNull(message = "Cannot delete contact details, a valid contact details must " +
             "be specified.") ContactDetails contactDetails) {
         if(contactDetails.getOID() == null){

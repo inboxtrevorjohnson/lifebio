@@ -16,3 +16,11 @@ spring:
     show-sql: true
     hibernate:
         ddl-auto: create-drop
+
+# AuthorityConfiguration
+authority:
+  contactdetails:
+    create: hasAuthority('CONTACT_DETAILS_CREATE')
+    read: hasAuthority('CONTACT_DETAILS_READ')
+    update: hasAuthority('CONTACT_DETAILS_UPDATE')
+    delete: hasAuthority('CONTACT_DETAILS_DELETE')

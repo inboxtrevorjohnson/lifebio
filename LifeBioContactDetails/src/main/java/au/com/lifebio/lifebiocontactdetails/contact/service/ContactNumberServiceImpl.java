@@ -9,6 +9,7 @@ import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumber;
 import au.com.lifebio.lifebiocontactdetails.contact.model.ContactNumberImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,7 @@ public class ContactNumberServiceImpl implements ContactNumberService {
     private ContactNumberRepository contactNumberRepository;
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_CREATE')")
     public Optional<ContactNumber> addContactDetailsContactNumber(
             @NotNull(message = "Cannot add contact number with null contact details.") Long contactDetailsOID,
             @NotNull(message = "Cannot add null contact number.") ContactNumber contactNumber) {
@@ -52,6 +54,7 @@ public class ContactNumberServiceImpl implements ContactNumberService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_UPDATE')")
     public Optional<ContactNumber> changeContactDetailsContactNumber(
             @NotNull(message = "Cannot change null contact number.") ContactNumber contactNumber) {
 
@@ -74,6 +77,7 @@ public class ContactNumberServiceImpl implements ContactNumberService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_READ')")
     public Optional<ContactNumber> findContactDetailsContactNumber(
             @NotNull(message = "Cannot find contact details with a null OID.") Long oID) {
         Optional<ContactNumber> optional = Optional.of(contactNumberRepository.findById(oID).orElseThrow(
@@ -83,6 +87,7 @@ public class ContactNumberServiceImpl implements ContactNumberService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_READ')")
     public Optional<List<ContactNumberImpl>> findAllContactDetailsContactNumbers(
             @NotNull(message = "Cannot find contact numbers with a null contact details OID.") Long contactDetailsOID) {
         Optional<List<ContactNumberImpl>> optional = Optional.of(contactDetailsService.findContactDetails(
@@ -93,6 +98,7 @@ public class ContactNumberServiceImpl implements ContactNumberService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_READ')")
     public void deleteContactDetailsContactNumber(
             @NotNull(message = "Cannot delete contact number, a valid contact details oid must be specified.")
                     Long contactDetailsOID,

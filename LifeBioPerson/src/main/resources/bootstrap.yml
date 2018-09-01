@@ -16,3 +16,29 @@ spring:
     show-sql: true
     hibernate:
         ddl-auto: create-drop
+
+# AuthorityConfiguration
+authority:
+  doctor:
+    create: hasAuthority('DOCTOR_CREATE')
+    read: hasAuthority('DOCTOR_READ')
+    update: hasAuthority('DOCTOR_UPDATE')
+    delete: hasAuthority('DOCTOR_DELETE')
+
+  patient:
+    create: hasAuthority('PATIENT_CREATE')
+    read: hasAuthority('PATIENT_READ')
+    update: hasAuthority('PATIENT_UPDATE')
+    delete: hasAuthority('PATIENT_DELETE')
+
+  person:
+    create: hasAuthority('PERSON_CREATE')
+    read: hasAuthority('PERSON_READ')
+    update: hasAuthority('PERSON_UPDATE')
+    delete: hasAuthority('PERSON_DELETE')
+
+  serviceprovider:
+    create: hasAuthority('SERVICE_PROVIDER_CREATE')
+    read: hasAuthority('SERVICE_PROVIDER_READ')
+    update: hasAuthority('SERVICE_PROVIDER_UPDATE')
+    delete: hasAuthority('SERVICE_PROVIDER_DELETE')

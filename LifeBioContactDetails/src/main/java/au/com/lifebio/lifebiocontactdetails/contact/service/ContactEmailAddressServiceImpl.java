@@ -8,6 +8,7 @@ import au.com.lifebio.lifebiocontactdetails.contact.model.ContactEmailAddressImp
 import au.com.lifebio.lifebiocontactdetails.contact.model.ContactDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,7 @@ public class ContactEmailAddressServiceImpl implements ContactEmailAddressServic
     private ContactEmailAddressRepository contactEmailAddressRepository;
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_CREATE')")
     public Optional<ContactEmailAddress> addContactDetailsContactEmailAddress(
             @NotNull(message = "Cannot add contact email address with null contact details.") Long contactDetailsOID,
             @NotNull(message = "Cannot add null contact email address.") ContactEmailAddress contactEmailAddress) {
@@ -54,6 +56,7 @@ public class ContactEmailAddressServiceImpl implements ContactEmailAddressServic
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_UPDATE')")
     public Optional<ContactEmailAddress> changeContactDetailsContactEmailAddress(
             @NotNull(message = "Cannot change null contact email address.") ContactEmailAddress contactEmailAddress) {
 
@@ -76,6 +79,7 @@ public class ContactEmailAddressServiceImpl implements ContactEmailAddressServic
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_READ')")
     public Optional<ContactEmailAddress> findContactDetailsContactEmailAddress(
             @NotNull(message = "Cannot find contact details with a null OID.") Long oID) {
         Optional<ContactEmailAddress> optional = Optional.of(contactEmailAddressRepository.findById(oID).orElseThrow(
@@ -85,6 +89,7 @@ public class ContactEmailAddressServiceImpl implements ContactEmailAddressServic
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_READ')")
     public Optional<List<ContactEmailAddressImpl>> findAllContactDetailsContactEmailAddresses(
             @NotNull(message = "Cannot find contact email addresss with a null contact details OID.")
                     Long contactDetailsOID) {
@@ -95,6 +100,7 @@ public class ContactEmailAddressServiceImpl implements ContactEmailAddressServic
     }
 
     @Override
+    @PreAuthorize("hasAuthority('CONTACT_DETAILS_DELETE')")
     public void deleteContactDetailsContactEmailAddress(
             @NotNull(message = "Cannot delete contact email address, a valid contact details oid must be specified.")
                     Long contactDetailsOID,

@@ -31,42 +31,6 @@ public class ContactDetailsControllerImpl implements ContactDetailsController {
     /* Set up test data */
     List<Optional<ContactDetails>> contactDetailsList = new ArrayList<>();
 
-    @PostConstruct
-    public void postConstruct(){
-        for(int i = 0; i < 10; i++){
-            ContactDetails contactDetails = new ContactDetailsImpl();
-            Optional<ContactDetails> optional = contactDetailsService.addContactDetails(contactDetails);
-        }
-        contactDetailsList.stream().forEach( contactDetails -> {
-            for(int i = 0; i < 10; i++){
-                ContactNumber contactNumber = new ContactNumberImpl();
-                contactNumber.setNumber(RandomStringUtils.randomNumeric(10));
-                contactNumber.setContactType(ContactType.BUSINESS);
-
-                ContactEmailAddress contactEmailAddress = new ContactEmailAddressImpl();
-                contactEmailAddress.setEmailAddress( RandomStringUtils.randomAlphabetic(5) + "@" + RandomStringUtils
-                        .randomAlphabetic(5) + "." + RandomStringUtils.randomAlphabetic(3));
-                contactEmailAddress.setContactType(ContactType.BUSINESS);
-
-                ContactAddress contactAddress = new ContactAddressImpl();
-                contactAddress.setLine1( RandomStringUtils.randomAlphanumeric(10));
-                contactAddress.setLine2( RandomStringUtils.randomAlphanumeric(10));
-                contactAddress.setLine3( RandomStringUtils.randomAlphanumeric(10));
-                contactAddress.setCityArea( RandomStringUtils.randomAlphanumeric(10));
-                contactAddress.setState( RandomStringUtils.randomAlphanumeric(10));
-                contactAddress.setPostalCode( RandomStringUtils.randomAlphanumeric(10));
-                contactAddress.setCountry( RandomStringUtils.randomAlphanumeric(10));
-                contactAddress.setContactType(ContactType.BUSINESS);
-
-                contactDetails.get().getContactNumbers().add((ContactNumberImpl) contactNumber);
-                contactDetails.get().getContactEmailAddresses().add((ContactEmailAddressImpl) contactEmailAddress);
-                contactDetails.get().getContactAddresses().add((ContactAddressImpl) contactAddress);
-                contactDetailsService.changeContactDetails(contactDetails.get());
-            }
-        });
-
-    }
-
     @Override
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> addContactDetails(@RequestBody ContactDetails contactDetails) {
