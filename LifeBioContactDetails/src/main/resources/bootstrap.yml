@@ -6,21 +6,3 @@ spring:
       uri: http://192.168.99.100:8888
   profiles:
     active: default
-
-  datasource:
-    url: jdbc:postgresql://192.168.99.100:5432/LifeBio
-    username: crazymonkey
-    password: J@ck_@55
-
-  jpa:
-    show-sql: true
-    hibernate:
-        ddl-auto: create-drop
-
-# AuthorityConfiguration
-authority:
-  contactdetails:
-    create: hasAuthority('CONTACT_DETAILS_CREATE')
-    read: hasAuthority('CONTACT_DETAILS_READ')
-    update: hasAuthority('CONTACT_DETAILS_UPDATE')
-    delete: hasAuthority('CONTACT_DETAILS_DELETE')

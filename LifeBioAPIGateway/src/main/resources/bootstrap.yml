@@ -6,16 +6,3 @@ spring:
       uri: http://192.168.99.100:8888
   profiles:
     active: default
-
-security:
-  basic:
-    enabled: false
-
-feign:
-  oauth2:
-    enabled: true
-  hystrix:
-    enabled: false
-
-zuul:
-  sensitiveHeaders: Cookie,Set-Cookie

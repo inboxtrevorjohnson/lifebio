@@ -1,6 +1,6 @@
 spring:
   application:
-    name: lifebioapigateway
+    name: lifebioauthorizationserver
   cloud:
     config:
       uri: http://192.168.99.100:8888

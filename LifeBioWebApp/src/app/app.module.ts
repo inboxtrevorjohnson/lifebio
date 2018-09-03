@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppBootstrapModule } from './app-bootstrap/app-bootstrap.module';
@@ -76,7 +76,6 @@ const appRoutes: Routes = [
     BrowserModule,
     CollapseModule.forRoot(),
     HttpClientModule,
-    FormsModule,
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
