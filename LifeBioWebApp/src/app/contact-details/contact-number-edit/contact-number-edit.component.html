@@ -9,6 +9,29 @@
         <h5 class="card-title">{{title}}</h5>
       </div>
       <div class="card-body">
+
+        <!-- Number Validation -->
+        <div *ngIf="number.invalid && (number.dirty || number.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="number.errors['required']">
+            A telephone number is required.
+          </div>
+          <div *ngIf="number.errors['pattern'] || number.errors['minLength'] || number.errors['maxLength']">
+            The telephone number must contain 10 digits.
+          </div>
+          <!-- End of validation -->
+        </div>
+        <!-- Contact Type Validation -->
+        <div *ngIf="contactType.invalid && (contactType.dirty || contactType.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="contactType.errors['required']">
+            A contact type must be selected.
+          </div>
+          <!-- End of validation -->
+        </div>
+
         <!-- Row 1 -->
         <div class="form-group row">
 
@@ -36,7 +59,7 @@
                    class="form-control"
                    id="number"
                    formControlName="number"
-                   required name="number">
+                   name="number">
           </div>
         </div>
 

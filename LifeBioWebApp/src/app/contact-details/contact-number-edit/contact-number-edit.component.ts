@@ -21,7 +21,9 @@ export class ContactNumberEditComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   title = 'Contact Number';
   contactNumberForm = new FormGroup ({
-    number: new FormControl('', Validators.required),
+    number: new FormControl('',
+      [Validators.required,
+          Validators.pattern('[0-9]{10}')]),
     contactType: new FormControl('', Validators.required)
   });
   addingNew: boolean;
@@ -63,6 +65,10 @@ export class ContactNumberEditComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  get number() { return this.contactNumberForm.get('number'); }
+
+  get contactType() { return this.contactNumberForm.get('contactType'); }
 
   saveContactNumber() {
     if (this.addingNew) {

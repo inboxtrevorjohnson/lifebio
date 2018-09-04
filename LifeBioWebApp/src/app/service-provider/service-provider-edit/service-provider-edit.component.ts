@@ -20,8 +20,12 @@ import {HttpErrorResponse} from '@angular/common/http';
     subscription: Subscription;
     title = 'service provider';
     serviceProviderForm = new FormGroup ({
-      serviceProviderName: new FormControl('', Validators.required),
-      practiseNumber: new FormControl('', Validators.required)
+      serviceProviderName: new FormControl('',
+        [Validators.required,
+        Validators.minLength(3)]),
+      practiseNumber: new FormControl('',
+        [Validators.required,
+          Validators.minLength(3)])
     });
     addingNew: boolean;
 
@@ -59,6 +63,10 @@ import {HttpErrorResponse} from '@angular/common/http';
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  get serviceProviderName() { return this.serviceProviderForm.get('serviceProviderName'); }
+
+  get practiseNumber() { return this.serviceProviderForm.get('practiseNumber'); }
 
   saveServiceProvider() {
       if (this.addingNew) {

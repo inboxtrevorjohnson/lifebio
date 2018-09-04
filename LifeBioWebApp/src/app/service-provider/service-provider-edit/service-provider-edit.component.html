@@ -9,6 +9,30 @@
          <h5 class="card-title">{{title}}</h5>
         </div>
         <div class="card-body">
+          <!-- Practise Number Validation -->
+          <div *ngIf="practiseNumber.invalid && (practiseNumber.dirty || practiseNumber.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="practiseNumber.errors['required']">
+              A practise number is required.
+            </div>
+            <div *ngIf="practiseNumber.errors['minlength']">
+              The practise number must be at least 4 characters long.
+            </div>
+          <!-- End of validation -->
+          </div>
+          <!-- Service Provider Validation -->
+          <div *ngIf="serviceProviderName.invalid && (serviceProviderName.dirty || serviceProviderName.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="serviceProviderName.errors['required']">
+              A service provider name is required.
+            </div>
+            <div *ngIf="serviceProviderName.errors['minlength']">
+              The service provider name must be at least 4 characters long.
+            </div>
+          <!-- End of validation -->
+          </div>
           <!-- Row 1 -->
           <div class="form-group row">
 
@@ -20,7 +44,8 @@
                      class="form-control"
                      id="practiseNumber"
                      formControlName="practiseNumber"
-                     required name="practiseNumber">
+                     name="practiseNumber">
+              <!-- End Input -->
             </div>
           </div>
 
@@ -35,7 +60,7 @@
                      class="form-control"
                      id="serviceProviderName"
                      formControlName="serviceProviderName"
-                     required name="serviceProviderName">
+                     name="serviceProviderName">
             </div>
           </div>
 
